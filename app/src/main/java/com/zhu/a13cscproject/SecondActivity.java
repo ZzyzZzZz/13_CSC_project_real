@@ -32,22 +32,20 @@ public class SecondActivity extends AppCompatActivity {
 
         imageView = findViewById(R.id.imageView); //image view not created
         name = findViewById(R.id.textName); //name field not created
-        email = findViewById(R.id.textID); //testID not created
+        email = findViewById(R.id.textemail); //test email not created
         signOut = findViewById(R.id.sign_out_button); // signout button not created
-        signOut.setOnclickListener(new View.OnclickListener() {
+        signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 switch (v.getId()) {
                     // ...
                     case R.id.sign_out_button: //button not created
-                        signOut();
+                        mGooglesignInClient.signOut();
                         break;
                     // ...
                 }
             }
 
-
-        signOut = findViewById(R.id.sign_out_button); //sign out button not assigned
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         if (acct != null) {
             String personName = acct.getDisplayName();
@@ -64,7 +62,7 @@ public class SecondActivity extends AppCompatActivity {
 
     }
 
-    private void signOut() {
+    private void mGoogleSignInClient signOut() {
         mGoogleSignInClient.signOut()
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
@@ -75,6 +73,8 @@ public class SecondActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
 
 
 }
