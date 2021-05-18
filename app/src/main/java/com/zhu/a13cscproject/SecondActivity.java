@@ -34,30 +34,36 @@ public class SecondActivity extends AppCompatActivity {
         name = findViewById(R.id.textName); //name field not created
         email = findViewById(R.id.textemail); //test email not created
         signOut = findViewById(R.id.sign_out_button); // signout button not created
-        signOut.setOnClickListener(new View.OnClickListener() {
+        signOut.setOnClickListener(new View.OnClickListener()  {
             @Override
-            public void onClick(View v) {
-                switch (v.getId()) {
-                    // ...
-                    case R.id.sign_out_button: //button not created
-                        mGooglesignInClient.signOut();
-                        break;
-                    // ...
-                }
+            public void onClick(View view){
+
             }
 
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-        if (acct != null) {
-            String personName = acct.getDisplayName();
-            String personEmail = acct.getEmail();
-            String personId = acct.getId();
-            Uri personPhoto = acct.getPhotoUrl();
+        });
+//            @Override
+//            public void onClick(View v) {
+//                switch (v.getId()) {
+//                    // ...
+//                    case R.id.sign_out_button: //button not created
+//                        mGooglesignInClient.signOut();
+//                        break;
+//                    // ...
+//                }
+//            }
+
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        if (account != null) {
+            String personName = account.getDisplayName();
+            String personEmail = account.getEmail();
+            String personId = account.getId();
+            Uri personPhoto = account.getPhotoUrl();
         //three lines resetting variables
         name.setText(personName);
         email.setText(personEmail);
         id.setText(personId);
 
-        Glide.with(this).load(String.valueOf(personPhoto)).into(imageView); //whole function of glide is right here
+        Glide.with(new SecondActivity()).load(String.valueOf(personPhoto)).into(imageView); //whole function of glide is right here
         }
 
     }
