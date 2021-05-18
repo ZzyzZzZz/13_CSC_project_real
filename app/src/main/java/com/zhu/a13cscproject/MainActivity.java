@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
+        if (requestCode == RC_SIGN_IN) { //check if RC_SIGN_IN is correct
             // The Task returned from this call is always completed, no need to attach
             // a listener.
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
             // Signed in successfully, show authenticated UI.
             //updateUI(account); replaced
             Intent intent = new Intent(MainActivity.this, SecondActivity.class); //won't work since I need to create second activity first
+            startActivity(intent);
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.

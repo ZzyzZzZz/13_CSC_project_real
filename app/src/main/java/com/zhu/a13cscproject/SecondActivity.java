@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
@@ -23,34 +24,39 @@ public class SecondActivity extends AppCompatActivity {
     ImageView imageView;
     TextView name, email, id;
     Button signOut;
-    GoogleSignInClient mGooglesignInClient;
+
+    GoogleSignInClient mGoogleSignInClient;
 
     @Override // this part is to proceed in app after login, fetching data
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)// these lines are from google, they directed the integration
+                .requestEmail()
+                .build();
+
+        // Build a GoogleSignInClient with the options specified by gso.
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
         imageView = findViewById(R.id.imageView); //image view not created
         name = findViewById(R.id.textName); //name field not created
         email = findViewById(R.id.textemail); //test email not created
-        signOut = findViewById(R.id.sign_out_button); // signout button not created
-        signOut.setOnClickListener(new View.OnClickListener()  {
+        signOut = findViewById(R.id.sign_out_button); // signOut button not created
+        signOut.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.sign_out_button:
+                        signOut();
+                        break;
+                }
 
             }
-
         });
-//            @Override
-//            public void onClick(View v) {
-//                switch (v.getId()) {
-//                    // ...
-//                    case R.id.sign_out_button: //button not created
-//                        mGooglesignInClient.signOut();
-//                        break;
-//                    // ...
-//                }
-//            }
+
+
+
 
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if (account != null) {
@@ -63,24 +69,22 @@ public class SecondActivity extends AppCompatActivity {
         email.setText(personEmail);
         id.setText(personId);
 
-        Glide.with(new SecondActivity()).load(String.valueOf(personPhoto)).into(imageView); //whole function of glide is right here
+        Glide.with(this).load(String.valueOf(personPhoto)).into(imageView); //whole function of glide is right here
         }
 
     }
 
-    private void mGoogleSignInClient signOut() {
+
+    private void signOut() {
+
         mGoogleSignInClient.signOut()
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(SecondActivity.this, "signed out successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SecondActivity.this, "signed out successfully", Toast.LENGTH_LONG).show();
+                        finish();
                     }
                         // ...
-                    }
-                });
+                    });
+                }
     }
-
-
-
-
-}
