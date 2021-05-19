@@ -42,6 +42,7 @@ public class SecondActivity extends AppCompatActivity {
         imageView = findViewById(R.id.imageView); //image view not created
         name = findViewById(R.id.textName); //name field not created
         email = findViewById(R.id.textemail); //test email not created
+        id = findViewById(R.id.textID); //test
         signOut = findViewById(R.id.sign_out_button); // signOut button not created
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,12 +65,14 @@ public class SecondActivity extends AppCompatActivity {
             String personEmail = account.getEmail();
             String personId = account.getId();
             Uri personPhoto = account.getPhotoUrl();
-        //three lines resetting variables
-        name.setText(personName);
-        email.setText(personEmail);
-        id.setText(personId);
+            //three lines resetting variables
+            name.setText(personName);
+            email.setText(personEmail);
+            id.setText(personId); //@TODO this id is giving off null which is causing crashing
 
-        Glide.with(this).load(String.valueOf(personPhoto)).into(imageView); //whole function of glide is right here
+
+
+            Glide.with(this).load(String.valueOf(personPhoto)).into(imageView); //whole function of glide is right here
         }
 
     }

@@ -54,6 +54,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void signIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();//intent from google client
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
 
 
 
@@ -64,7 +68,9 @@ public class MainActivity extends AppCompatActivity {
         // Check for existing Google Sign In account, if the user is already signed in
         // the GoogleSignInAccount will be non-null.
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-//        updateUI(account);
+
+
+        //        updateUI(account);
 
 //        public void updateUI(account){
 //
@@ -82,13 +88,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-
-    private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
 
 
     @Override
