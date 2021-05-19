@@ -42,8 +42,8 @@ public class SecondActivity extends AppCompatActivity {
         imageView = findViewById(R.id.imageView); //image view not created
         name = findViewById(R.id.textName); //name field not created
         email = findViewById(R.id.textemail); //test email not created
-        id = findViewById(R.id.textID); //test
-        signOut = findViewById(R.id.sign_out_button); // signOut button not created
+        id = findViewById(R.id.textID); //bug fix, maybe get rid of this in the future @todo
+        signOut = findViewById(R.id.sign_out_button);
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
