@@ -20,8 +20,8 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
 
 
-    SignInButton signin;
-    int RC_SIGN_IN = 0;
+    SignInButton signin; //signin button from google
+    int RC_SIGN_IN = 0; //declear variable
     GoogleSignInClient mGoogleSignInClient; //Declear member variable, not to share with other activities.
 
 
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
             // Signed in successfully, show authenticated UI.
             //updateUI(account); replaced
-            Intent intent = new Intent(MainActivity.this, SecondActivity.class); //won't work since I need to create second activity first
+            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
             startActivity(intent);
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
