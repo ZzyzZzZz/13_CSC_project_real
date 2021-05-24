@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.13CSCProject">
-        <activity android:name=".FoodChoice"></activity>
+        <activity android:name=".OrderConfirm"></activity>
+        <activity android:name=".FoodChoice" />
         <activity android:name=".SecondActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
