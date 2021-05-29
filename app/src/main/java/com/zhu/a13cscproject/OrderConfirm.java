@@ -1,16 +1,26 @@
 package com.zhu.a13cscproject;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class OrderConfirm extends AppCompatActivity {
 
     TextView textView1, textView2, textView3;
+    ListView order_confirm_list;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +49,31 @@ public class OrderConfirm extends AppCompatActivity {
         if (kebab_qty_num == 0){
             textView3.setVisibility(View.INVISIBLE);
         }
+
+        order_confirm_list = findViewById(R.id.order_confirm_list); // this is the creation of a list view,
+        // where I list everything in order and exclude things that aren't chosen.
+        ArrayList<Integer> order_confirm_array = new ArrayList<>();
+
+        if (chips_qty_num != 0){
+            order_confirm_array.add(chips_qty_num);
+        }
+        ArrayAdapter order_confirm_list_adaptor = new ArrayAdapter(this, android.R.layout.simple_list_item_1, order_confirm_array);
+
+        order_confirm_list.setAdapter(order_confirm_list_adaptor);
+
+        // hashmap
+        Map<String, Integer> numberMapping = new HashMap<>();
+
+        // Adding key-value pairs to a HashMap
+        numberMapping.put("CHIPS", chips_qty_num);
+        numberMapping.put("HOTDOG", hotdog_qty_num);
+        numberMapping.put("KEBAB", kebab_qty_num);
+
+        // Add a new key-value pair only if the key does not exist in the HashMap, or is mapped to `null`
+        //numberMapping.putIfAbsent("Four", 4);
+
+        System.out.println(numberMapping);
+
 
 
     }// First research on how to carry variable over, then use if else to decisively display only the ones chosen.
