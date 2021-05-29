@@ -100,17 +100,12 @@ public class SecondActivity extends AppCompatActivity {
         cont_FoodChoice.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) { //if button clicked go launch the activity
-               launchFoodChoice();
+               Intent intent = new Intent(SecondActivity.this, FoodChoice.class); //create intent of FoodChoice and start it
+               startActivity(intent);
            }
         });
-
     }
-
-    public void launchFoodChoice(){ // method to open Food Choice
-        Intent intent = new Intent(this, FoodChoice.class); //create intent of FoodChoice and start it
-        startActivity(intent);
-    }
-    }
+}
     // todo: how to connect sellers and buyers, and how to communicate
 // here is the idea, I need to upload to firebase a set of food menu once, then
 //the buyers and sellers can just communicate with simple digits, for example, if I have

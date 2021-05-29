@@ -3,6 +3,7 @@ package com.zhu.a13cscproject;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,9 +12,11 @@ import android.widget.Toast;
 
 public class FoodChoice extends AppCompatActivity {
     TextView chips_text, hotdog_text, kebab_text, chips_qty, hotdog_qty, kebab_qty;
-    Button  chips_minus, chips_plus, hotdog_minus, hotdog_plus, kebab_minus, kebab_plus;
+    Button chips_minus, chips_plus, hotdog_minus, hotdog_plus, kebab_minus, kebab_plus, to_checkout;
     Integer chips_qty_num, hotdog_qty_num, kebab_qty_num;
-    Integer test;
+    public static final String CHIPS_QTY = "com.zhu.a13cscproject.CHIPS_QTY";// not optimised, could be more efficient
+    public static final String HOTDOG_QTY = "com.zhu.a13cscproject.HOTDOG_QTY";
+    public static final String KEBAB_QTY = "com.zhu.a13cscproject.KEBAB_QTY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +26,7 @@ public class FoodChoice extends AppCompatActivity {
         chips_qty_num = 0;
         hotdog_qty_num = 0;
         kebab_qty_num = 0;
-        test = 10;
+
 
         chips_text = findViewById(R.id.chips_text);
         chips_qty = findViewById(R.id.chips_qty);
@@ -43,31 +46,34 @@ public class FoodChoice extends AppCompatActivity {
         hotdog_qty.setText(String.valueOf(hotdog_qty_num));
         kebab_qty.setText(String.valueOf(kebab_qty_num));
 
+        cont_OrderConfirm();
 //** Chips button **
 
         chips_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (chips_qty_num <= 0){
+                if (chips_qty_num <= 0) {
                     Toast.makeText(FoodChoice.this, "you can't have less than 0 chips", Toast.LENGTH_LONG).show();
-                }else{
+                } else {
                     chips_qty_num -= 1;
                     chips_qty.setText(Integer.toString(chips_qty_num));
-                    Toast.makeText(FoodChoice.this,"yeet",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FoodChoice.this, "yeet", Toast.LENGTH_SHORT).show();
 
-            }}
+                }
+            }
         });
 
         chips_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (chips_qty_num >= 10){
+                if (chips_qty_num >= 10) {
                     Toast.makeText(FoodChoice.this, "save some chips for others!", Toast.LENGTH_LONG).show();
-                }else{
+                } else {
                     chips_qty_num += 1;
                     chips_qty.setText(Integer.toString(chips_qty_num));
-                    Toast.makeText(FoodChoice.this,"yeet",Toast.LENGTH_SHORT).show();// test, remove
-                }}
+                    Toast.makeText(FoodChoice.this, "yeet", Toast.LENGTH_SHORT).show();// test, remove
+                }
+            }
         });
 
 //** Hotdog button **
@@ -75,25 +81,27 @@ public class FoodChoice extends AppCompatActivity {
         hotdog_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (hotdog_qty_num <= 0){
+                if (hotdog_qty_num <= 0) {
                     Toast.makeText(FoodChoice.this, "you can't have less than 0 hotdog", Toast.LENGTH_LONG).show();
-                }else{
+                } else {
                     hotdog_qty_num -= 1;
                     hotdog_qty.setText(Integer.toString(hotdog_qty_num));
-                    Toast.makeText(FoodChoice.this,"yeet",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FoodChoice.this, "yeet", Toast.LENGTH_SHORT).show();
 
-                }}
+                }
+            }
         });
 
         hotdog_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (hotdog_qty_num >= 10){
+                if (hotdog_qty_num >= 10) {
                     Toast.makeText(FoodChoice.this, "save some hotdogs for others!", Toast.LENGTH_LONG).show();
-                }else{
+                } else {
                     hotdog_qty_num += 1;
                     hotdog_qty.setText(Integer.toString(hotdog_qty_num));
-                }}
+                }
+            }
         });
 
 //** kebab button **
@@ -101,31 +109,45 @@ public class FoodChoice extends AppCompatActivity {
         kebab_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (kebab_qty_num <= 0){
+                if (kebab_qty_num <= 0) {
                     Toast.makeText(FoodChoice.this, "you can't have less than 0 kebab", Toast.LENGTH_LONG).show();
-                }else{
+                } else {
                     kebab_qty_num -= 1;
                     kebab_qty.setText(Integer.toString(kebab_qty_num));
-                    Toast.makeText(FoodChoice.this,"yeet",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FoodChoice.this, "yeet", Toast.LENGTH_SHORT).show();
 
-                }}
+                }
+            }
         });
 
         kebab_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (kebab_qty_num >= 10){
+                if (kebab_qty_num >= 10) {
                     Toast.makeText(FoodChoice.this, "save some kebabs for others!", Toast.LENGTH_LONG).show();
-                }else{
+                } else {
                     kebab_qty_num += 1;
                     kebab_qty.setText(Integer.toString(kebab_qty_num));
-                }}
+                }
+            }
         });
 
 
-
-
-
-
     }
+
+    private void cont_OrderConfirm() {
+        to_checkout = findViewById(R.id.to_checkout_btn);
+        to_checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_to_orderconfirm = new Intent(FoodChoice.this, OrderConfirm.class);
+                intent_to_orderconfirm.putExtra(CHIPS_QTY, chips_qty_num);// not optimised, could use a loop
+                intent_to_orderconfirm.putExtra(HOTDOG_QTY, hotdog_qty_num);
+                intent_to_orderconfirm.putExtra(KEBAB_QTY, kebab_qty_num);
+                startActivity(intent_to_orderconfirm);
+            }
+        });
+    }
+
+
 }

@@ -7,7 +7,7 @@
     tools:context=".FoodChoice">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/menu_title"
         android:layout_width="157dp"
         android:layout_height="48dp"
         android:text="choose your food"
@@ -26,7 +26,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.381"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/menu_title" />
 
     <TextView
         android:id="@+id/hotdog_text"
@@ -59,7 +59,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.745"
         app:layout_constraintStart_toEndOf="@+id/chips_text"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/menu_title" />
 
     <Button
         android:id="@+id/chips_minus"
@@ -70,7 +70,7 @@
         app:layout_constraintEnd_toStartOf="@+id/chips_text"
         app:layout_constraintHorizontal_bias="0.41"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/menu_title" />
 
     <Button
         android:id="@+id/hotdog_plus"
