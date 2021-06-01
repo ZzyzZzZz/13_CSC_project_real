@@ -55,7 +55,7 @@ public class OrderConfirm extends AppCompatActivity {
             order_confirm_array.add("chips" + chips_qty_num);
         }
         if (hotdog_qty_num != 0){
-            order_confirm_array.add("hotdog" + kebab_qty_num);
+            order_confirm_array.add("hotdog" + hotdog_qty_num);
         }
         if (kebab_qty_num != 0){
             order_confirm_array.add("kebab" + kebab_qty_num);
