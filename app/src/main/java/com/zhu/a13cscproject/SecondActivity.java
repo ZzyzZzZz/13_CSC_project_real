@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -50,14 +52,14 @@ public class SecondActivity extends AppCompatActivity {
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.sign_out_button:
-                        signOut();
-                        break;
+                if (v.getId() == R.id.sign_out_button) {
+                    mGoogleSignInClient.signOut();
+                    finish();
                 }
 
             }
         });
+
 
         cont_FoodChoice();
 
@@ -65,17 +67,19 @@ public class SecondActivity extends AppCompatActivity {
         revoke_signin_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mGoogleSignInClient.revokeAccess()
-                .addOnCompleteListener(SecondActivity.this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull @NotNull Task<Void> task) {
-                        Toast.makeText(SecondActivity.this, "AccessRevoked successfully", Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
-                });
-            }
-        });
-
+                if (v.getId() == R.id.revoke_signin){
+                    mGoogleSignInClient.revokeAccess()
+                            .addOnCompleteListener(SecondActivity.this, new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull @NotNull Task<Void> task) {
+                                    Toast.makeText(SecondActivity.this, "revoked successfully", Toast.LENGTH_LONG).show();
+                                }
+                            });
+                    finish();
+                }else{
+                    Toast.makeText(SecondActivity.this, "revoke failed", Toast.LENGTH_SHORT).show();
+                }
+            }});
 
 
 
@@ -99,18 +103,18 @@ public class SecondActivity extends AppCompatActivity {
     }
 
 
-    private void signOut() {
-
-        mGoogleSignInClient.signOut() //signOut function
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() { //code from google, basically just signing out and close activity
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(SecondActivity.this, "signed out successfully", Toast.LENGTH_LONG).show();
-                        finish();
-                    }
-                        // ...
-                    });
-                }
+//    private void signOut() {
+//
+//        mGoogleSignInClient.signOut() //signOut function
+//                .addOnCompleteListener(this, new OnCompleteListener<Void>() { //code from google, basically just signing out and close activity
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        Toast.makeText(SecondActivity.this, "signed out successfully", Toast.LENGTH_LONG).show();
+//                        finish();
+//                    }
+//                        // ...
+//                    });
+//                }
 
     private void cont_FoodChoice() { // method to open Food Choice
         cont_FoodChoice = findViewById(R.id.cont_FoodChoice); // continue button to FoodChoice activity
@@ -122,7 +126,7 @@ public class SecondActivity extends AppCompatActivity {
            }
         });
     }
-}
+};
     // todo: how to connect sellers and buyers, and how to communicate
 // here is the idea, I need to upload to firebase a set of food menu once, then
 //the buyers and sellers can just communicate with simple digits, for example, if I have
