@@ -3,6 +3,7 @@ package com.zhu.a13cscproject;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ public class OrderConfirm extends AppCompatActivity {
 
     ListView order_confirm_list;
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +26,7 @@ public class OrderConfirm extends AppCompatActivity {
         setContentView(R.layout.activity_order_confirm);
 
         Intent intent_to_orderconfirm = getIntent();
-        int chips_qty_num = intent_to_orderconfirm.getIntExtra(FoodChoice.CHIPS_QTY, 0);// to get the value we need from last activity
+        int chips_qty_num = intent_to_orderconfirm.getIntExtra(FoodChoice.CHIPS_QTY,0);// to get the value we need from last activity
         int hotdog_qty_num = intent_to_orderconfirm.getIntExtra(FoodChoice.HOTDOG_QTY, 0);
         int kebab_qty_num = intent_to_orderconfirm.getIntExtra(FoodChoice.KEBAB_QTY, 0);
 

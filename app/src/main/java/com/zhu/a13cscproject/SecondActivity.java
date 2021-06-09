@@ -20,12 +20,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import org.jetbrains.annotations.NotNull;
+
 public class SecondActivity extends AppCompatActivity {
 
     ImageView imageView;
     TextView name, email, id;
-    Button signOut;
-    Button cont_FoodChoice;
+    Button signOut, cont_FoodChoice, revoke_signin_btn;
 
     GoogleSignInClient mGoogleSignInClient;
 
@@ -59,6 +60,22 @@ public class SecondActivity extends AppCompatActivity {
         });
 
         cont_FoodChoice();
+
+        revoke_signin_btn = findViewById(R.id.revoke_signin);
+        revoke_signin_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mGoogleSignInClient.revokeAccess()
+                .addOnCompleteListener(SecondActivity.this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<Void> task) {
+                        Toast.makeText(SecondActivity.this, "AccessRevoked successfully", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                });
+            }
+        });
+
 
 
 
