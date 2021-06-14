@@ -53,10 +53,15 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (v.getId() == R.id.sign_out_button) {
-                    mGoogleSignInClient.signOut();
-                    finish();
+                    mGoogleSignInClient.signOut()
+                            .addOnCompleteListener(SecondActivity.this, new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull @NotNull Task<Void> task) {
+                                    Toast.makeText(SecondActivity.this, "signed out successfully", Toast.LENGTH_LONG).show();
+                                    finish();
+                                }
+                            });
                 }
-
             }
         });
 
@@ -79,7 +84,8 @@ public class SecondActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(SecondActivity.this, "revoke failed", Toast.LENGTH_SHORT).show();
                 }
-            }});
+            }
+        });
 
 
 
@@ -102,7 +108,6 @@ public class SecondActivity extends AppCompatActivity {
 
     }
 
-
 //    private void signOut() {
 //
 //        mGoogleSignInClient.signOut() //signOut function
@@ -113,8 +118,8 @@ public class SecondActivity extends AppCompatActivity {
 //                        finish();
 //                    }
 //                        // ...
-//                    });
-//                }
+//                });
+//    }
 
     private void cont_FoodChoice() { // method to open Food Choice
         cont_FoodChoice = findViewById(R.id.cont_FoodChoice); // continue button to FoodChoice activity

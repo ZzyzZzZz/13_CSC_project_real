@@ -57,7 +57,7 @@ public class FoodChoice extends AppCompatActivity {
                 } else {
                     chips_qty_num -= 1;
                     chips_qty.setText(Integer.toString(chips_qty_num));
-                    Toast.makeText(FoodChoice.this, "yeet", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(FoodChoice.this, "yeet", Toast.LENGTH_SHORT).show(); //test
 
                 }
             }

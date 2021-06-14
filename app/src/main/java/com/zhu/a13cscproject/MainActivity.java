@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     GoogleSignInClient mGoogleSignInClient; //Declear member variable, not to share with other activities.
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,10 +34,8 @@ public class MainActivity extends AppCompatActivity {
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (view.getId()) {
-                    case R.id.sign_in_button:
-                        signIn();
-                        break;
+                if (view.getId() == R.id.sign_in_button) {
+                    signIn();
                     // ...
                 }
             }
@@ -58,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();//intent from google client
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
-
 
 
     @Override
@@ -86,8 +82,6 @@ public class MainActivity extends AppCompatActivity {
         //
 
     }
-
-
 
 
     @Override
@@ -119,8 +113,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-
-
 
 
 }
