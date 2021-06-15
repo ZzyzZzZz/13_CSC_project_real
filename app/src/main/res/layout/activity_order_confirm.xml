@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OrderConfirm">
+    tools:context=".OrderConfirm"
+    android:background="#000000">
+
 
     <TextView
         android:id="@+id/textView1"

@@ -27,7 +27,7 @@ import org.jetbrains.annotations.NotNull;
 public class SecondActivity extends AppCompatActivity {
 
     ImageView imageView;
-    TextView name, email, id;
+    TextView name, email;
     Button signOut, cont_FoodChoice, revoke_signin_btn;
 
     GoogleSignInClient mGoogleSignInClient;
@@ -47,7 +47,6 @@ public class SecondActivity extends AppCompatActivity {
         imageView = findViewById(R.id.imageView); //image view not created
         name = findViewById(R.id.textName); //name field not created
         email = findViewById(R.id.textemail); //test email not created
-        id = findViewById(R.id.textID); //bug fix, maybe get rid of this in the future @todo
         signOut = findViewById(R.id.sign_out_button);
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,12 +93,10 @@ public class SecondActivity extends AppCompatActivity {
         if (account != null) {
             String personName = account.getDisplayName();
             String personEmail = account.getEmail();
-            String personId = account.getId();
             Uri personPhoto = account.getPhotoUrl();
             //three lines resetting variables
             name.setText(personName);
             email.setText(personEmail);
-            id.setText(personId); //@TODO this id is giving off null which is causing crashing
 
 
 
