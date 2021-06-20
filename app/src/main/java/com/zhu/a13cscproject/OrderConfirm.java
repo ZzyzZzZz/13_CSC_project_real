@@ -1,11 +1,11 @@
 package com.zhu.a13cscproject;
 
-import androidx.annotation.RequiresApi;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
+
 import android.content.Intent;
-import android.os.Build;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,12 +14,13 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+
+
 public class OrderConfirm extends AppCompatActivity {
 
     ListView order_confirm_list;
+    TextView title;
 
-    @SuppressLint("SetTextI18n")
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,37 +31,36 @@ public class OrderConfirm extends AppCompatActivity {
         int hotdog_qty_num = intent_to_orderconfirm.getIntExtra(FoodChoice.HOTDOG_QTY, 0);
         int kebab_qty_num = intent_to_orderconfirm.getIntExtra(FoodChoice.KEBAB_QTY, 0);
 
-        TextView textView1 = findViewById(R.id.textView1);
-        TextView textView2 = findViewById(R.id.textView2);
-        TextView textView3 = findViewById(R.id.textView3);
+        title = findViewById(R.id.order_confirm_title);
 
-        textView1.setText("" + chips_qty_num);// I used "" + number to turn it into a string to display correctly
-        textView2.setText("" + hotdog_qty_num);
-        textView3.setText("" + kebab_qty_num);
 
-        if (chips_qty_num == 0) {// not optimised
-            textView1.setVisibility(View.INVISIBLE);// setting visibility if this item is not chosen
-        }
-        if (hotdog_qty_num == 0){
-            textView2.setVisibility(View.INVISIBLE);
-            // the problem with this setup is that I won't be able to replace one that's chosen
-        }
-        if (kebab_qty_num == 0){
-            textView3.setVisibility(View.INVISIBLE);
-        }
+//        textView1.setText("" + chips_qty_num);// I used "" + number to turn it into a string to display correctly
+//        textView2.setText("" + hotdog_qty_num);
+//        textView3.setText("" + kebab_qty_num);
+
+//        if (chips_qty_num == 0) {// not optimised
+//            textView1.setVisibility(View.INVISIBLE);// setting visibility if this item is not chosen
+//        }
+//        if (hotdog_qty_num == 0){
+//            textView2.setVisibility(View.INVISIBLE);
+//            // the problem with this setup is that I won't be able to replace one that's chosen
+//        }
+//        if (kebab_qty_num == 0){
+//            textView3.setVisibility(View.INVISIBLE);
+//        }
 
         order_confirm_list = findViewById(R.id.order_confirm_list); // this is the creation of a list view,
         // where I list everything in order and exclude things that aren't chosen.
         ArrayList<String> order_confirm_array = new ArrayList<>(); //I turned int to String so I can display both String and Int.
 
         if (chips_qty_num != 0){
-            order_confirm_array.add("chips" + chips_qty_num);
+            order_confirm_array.add("chips   x" + chips_qty_num);
         }
         if (hotdog_qty_num != 0){
-            order_confirm_array.add("hotdog" + hotdog_qty_num);
+            order_confirm_array.add("hotdog    x" + hotdog_qty_num);
         }
         if (kebab_qty_num != 0){
-            order_confirm_array.add("kebab" + kebab_qty_num);
+            order_confirm_array.add("kebab    x" + kebab_qty_num);
         }
         ArrayAdapter<String> order_confirm_list_adaptor = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, order_confirm_array);
 
