@@ -1,0 +1,6 @@
+1. At the moment buttons leads to wrong places, the app is meant to flow from check_signIn straight to choose_food activity, now it is leading to
+empty page where recyclerview exists, and the floating button is meant to take you to checkout, the listview for recount, not food selection. FoodSpecification is meant
+to be for each recyclerview, not check out button. Fix after set up SQLite.
+2. how to enter data as a developer into database SQLite: copy and past codes to create a separate activity and set the TextViews to EditTexts. Hidden ofc. Testing purpose,
+will not hide it and probably in final version just change it to TextView.
+3. In moderator addfood, do make it so that they can delete foods as well. not prioritized.

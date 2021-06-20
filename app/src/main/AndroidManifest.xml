@@ -11,9 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.13CSCProject">
-        <activity android:name=".OrderConfirm"
-            android:parentActivityName=".FoodChoice"/><!--according to tutorial, I am making food_choice the parent activity, and it works.-->
-        <!--update to my comment, this is to carry variable over, so I am kind of extending .FoodChoice class -->
+        <activity android:name=".FoodSpecifications"></activity>
+        <activity android:name=".FoodChoice_v2" />
+        <activity
+            android:name=".OrderConfirm"
+            android:parentActivityName=".FoodChoice" /> <!-- according to tutorial, I am making food_choice the parent activity, and it works. -->
+        <!-- update to my comment, this is to carry variable over, so I am kind of extending .FoodChoice class -->
         <activity android:name=".FoodChoice" />
         <activity android:name=".SecondActivity" />
         <activity android:name=".MainActivity">

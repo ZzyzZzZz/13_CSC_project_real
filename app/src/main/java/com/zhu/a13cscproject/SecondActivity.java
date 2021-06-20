@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -123,7 +121,7 @@ public class SecondActivity extends AppCompatActivity {
         cont_FoodChoice.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) { //if button clicked go launch the activity
-               Intent intent = new Intent(SecondActivity.this, FoodChoice.class); //create intent of FoodChoice and start it
+               Intent intent = new Intent(SecondActivity.this, FoodChoice_v2.class); //create intent of FoodChoice and start it
                startActivity(intent);
            }
         });

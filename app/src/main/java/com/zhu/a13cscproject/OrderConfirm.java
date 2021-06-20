@@ -24,16 +24,44 @@ public class OrderConfirm extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_confirm);
+//        setContentView(R.layout.activity_order_confirm);
+//
+//        Intent intent_to_orderconfirm = getIntent();
+//        int chips_qty_num = intent_to_orderconfirm.getIntExtra(FoodChoice.CHIPS_QTY,0);// to get the value we need from last activity
+//        int hotdog_qty_num = intent_to_orderconfirm.getIntExtra(FoodChoice.HOTDOG_QTY, 0);
+//        int kebab_qty_num = intent_to_orderconfirm.getIntExtra(FoodChoice.KEBAB_QTY, 0);
+//
+//        title = findViewById(R.id.order_confirm_title);
+//
+//
+//
+//
+//        order_confirm_list = findViewById(R.id.order_confirm_list); // this is the creation of a list view,
+//        // where I list everything in order and exclude things that aren't chosen.
+//        ArrayList<String> order_confirm_array = new ArrayList<>(); //I turned int to String so I can display both String and Int.
+//
+//        if (chips_qty_num != 0){
+//            order_confirm_array.add("chips   x" + chips_qty_num);
+//        }
+//        if (hotdog_qty_num != 0){
+//            order_confirm_array.add("hotdog    x" + hotdog_qty_num);
+//        }
+//        if (kebab_qty_num != 0){
+//            order_confirm_array.add("kebab    x" + kebab_qty_num);
+//        }
+//        ArrayAdapter<String> order_confirm_list_adaptor = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, order_confirm_array);
+//
+//        order_confirm_list.setAdapter(order_confirm_list_adaptor);
 
-        Intent intent_to_orderconfirm = getIntent();
-        int chips_qty_num = intent_to_orderconfirm.getIntExtra(FoodChoice.CHIPS_QTY,0);// to get the value we need from last activity
-        int hotdog_qty_num = intent_to_orderconfirm.getIntExtra(FoodChoice.HOTDOG_QTY, 0);
-        int kebab_qty_num = intent_to_orderconfirm.getIntExtra(FoodChoice.KEBAB_QTY, 0);
-
-        title = findViewById(R.id.order_confirm_title);
 
 
+
+
+    }// First research on how to carry variable over, then use if else to decisively display only the ones chosen.
+}//afterwards it should be done as first version, then move onto second version.
+// json write to my file storage and read it then push it to firebase
+
+//wasted codes
 //        textView1.setText("" + chips_qty_num);// I used "" + number to turn it into a string to display correctly
 //        textView2.setText("" + hotdog_qty_num);
 //        textView3.setText("" + kebab_qty_num);
@@ -48,24 +76,8 @@ public class OrderConfirm extends AppCompatActivity {
 //        if (kebab_qty_num == 0){
 //            textView3.setVisibility(View.INVISIBLE);
 //        }
-
-        order_confirm_list = findViewById(R.id.order_confirm_list); // this is the creation of a list view,
-        // where I list everything in order and exclude things that aren't chosen.
-        ArrayList<String> order_confirm_array = new ArrayList<>(); //I turned int to String so I can display both String and Int.
-
-        if (chips_qty_num != 0){
-            order_confirm_array.add("chips   x" + chips_qty_num);
-        }
-        if (hotdog_qty_num != 0){
-            order_confirm_array.add("hotdog    x" + hotdog_qty_num);
-        }
-        if (kebab_qty_num != 0){
-            order_confirm_array.add("kebab    x" + kebab_qty_num);
-        }
-        ArrayAdapter<String> order_confirm_list_adaptor = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, order_confirm_array);
-
-        order_confirm_list.setAdapter(order_confirm_list_adaptor);
-
+//waste codes 2
+//
 //        // hashmap
 //        Map<String, Integer> numberMapping = new HashMap<>();
 //
@@ -78,9 +90,3 @@ public class OrderConfirm extends AppCompatActivity {
 //        //numberMapping.putIfAbsent("Four", 4);
 //
 //        System.out.println(numberMapping);
-
-
-
-    }// First research on how to carry variable over, then use if else to decisively display only the ones chosen.
-}//afterwards it should be done as first version, then move onto second version.
-// json write to my file storage and read it then push it to firebase
