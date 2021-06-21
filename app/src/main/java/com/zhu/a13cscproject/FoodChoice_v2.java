@@ -1,19 +1,28 @@
 package com.zhu.a13cscproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
 
 
 public class FoodChoice_v2 extends AppCompatActivity {
 
     RecyclerView recyclerview;
     FloatingActionButton to_cart_fbtn, to_addfood;
+
+    FoodDatabase foodDB; //get my database
+    ArrayList<String> food_id, food_name, food_price, food_qty, food_description;
+    CustomAdapter customAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +41,35 @@ public class FoodChoice_v2 extends AppCompatActivity {
             }
         });
 
+        foodDB = new FoodDatabase(FoodChoice_v2.this); // here are my variables for RecyclerView
+        food_id = new ArrayList<>();
+        food_name = new ArrayList<>();
+        food_price = new ArrayList<>();
+        food_qty = new ArrayList<>();
+        food_description = new ArrayList<>();
 
+        storeDataArrays();
+
+        customAdapter = new CustomAdapter(FoodChoice_v2.this, food_id, food_name, food_price, food_qty);
+        recyclerview.setAdapter(customAdapter);//set adapter to my own adapter
+        recyclerview.setLayoutManager(new LinearLayoutManager(FoodChoice_v2.this));//linear layout for a vertical scroll
+        //what is LayoutManager? See link below for description:
+        //https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView.LayoutManager
+    }
+
+
+    void storeDataArrays(){// get the data from SQL and add them to the predefined variables that holds these values.
+        Cursor cursor = foodDB.readAllData();
+        if(cursor.getCount() == 0) {//if getCount() == 0 then there are no data
+            Toast.makeText(this, "No Food data, please load SQL", Toast.LENGTH_SHORT).show();
+        }else{
+            while (cursor.moveToNext()){
+                food_id.add(cursor.getString(0)); //column count, basically arrange where they are.
+                food_name.add(cursor.getString(1));
+                food_price.add(cursor.getString(2));
+                food_qty.add(cursor.getString(3));
+                food_description.add(cursor.getString(4));
+            }
+        }
     }
 }

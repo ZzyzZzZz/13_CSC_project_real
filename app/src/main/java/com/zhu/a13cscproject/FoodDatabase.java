@@ -2,6 +2,7 @@ package com.zhu.a13cscproject;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
@@ -55,9 +56,26 @@ class FoodDatabase extends SQLiteOpenHelper{
         long result = db.insert(TABLE_NAME, null, cv);
         if (result == -1){
             Toast.makeText(context, "Failed to add", Toast.LENGTH_SHORT).show();
+
         }else{
             Toast.makeText(context, "Added successfully", Toast.LENGTH_SHORT).show();
         }
+
+    }
+
+    Cursor readAllData(){
+        String query = "SELECT * FROM " + TABLE_NAME; //SQL query, select all from table_name, which is my database table.
+        SQLiteDatabase db = this.getReadableDatabase(); //database object
+
+        Cursor cursor = null; //define cursor
+        if(db != null) { //not null means there are some data
+            cursor = db.rawQuery(query, null);// all data in cursor
+        }
+//
+//        }else{
+//            Toast.makeText(context, "failed to obtain data from SQLite. Check if data is available", Toast.LENGTH_SHORT).show(); // catch error
+//        }
+        return cursor;
 
     }
 }

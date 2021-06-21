@@ -10,11 +10,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/food_recyclerview"
         android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_height="727dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.285" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/to_cart"
@@ -38,6 +40,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginBottom="44dp"
         android:clickable="true"
+        android:focusable="true"
         android:contentDescription="For adding food items"
         android:src="@drawable/ic_baseline_android_24"
         app:fabCustomSize="80dp"

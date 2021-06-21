@@ -2,6 +2,7 @@ package com.zhu.a13cscproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,10 +17,12 @@ public class FoodSpecifications extends AppCompatActivity {
     Button add_to_sql_btn;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_specifications);
+
 
         food_name = findViewById(R.id.food_name);
         food_price = findViewById(R.id.food_price);
@@ -32,14 +35,15 @@ public class FoodSpecifications extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FoodDatabase foodDB = new FoodDatabase(FoodSpecifications.this);
+
                 foodDB.addfood(
                         food_name.getText().toString().trim(),
                         Float.valueOf(food_price.getText().toString().trim()),
                         food_description.getText().toString().trim(),
                         Integer.valueOf(food_qty.getText().toString().trim())
                         );
-
-
+                Intent intent = new Intent(FoodSpecifications.this, FoodChoice_v2.class);
+                startActivity(intent);
             }
         });
 
