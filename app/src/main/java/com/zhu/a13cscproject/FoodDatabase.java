@@ -72,10 +72,25 @@ class FoodDatabase extends SQLiteOpenHelper{
             cursor = db.rawQuery(query, null);// all data in cursor
         }
 //
-//        }else{
+//        }else{f
 //            Toast.makeText(context, "failed to obtain data from SQLite. Check if data is available", Toast.LENGTH_SHORT).show(); // catch error
 //        }
         return cursor;
 
+    }
+
+    void updateData(String row_id, String qty){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_QUANTITY, qty);
+
+        long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{row_id});
+        if(result == -1){
+            Toast.makeText(context, "Failed to Update SQLite database", Toast.LENGTH_LONG).show();
+
+        }else{
+            Toast.makeText(context, "Changes saved", Toast.LENGTH_SHORT).show();
+        }
+        db.close();
     }
 }

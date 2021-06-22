@@ -4,3 +4,4 @@ to be for each recyclerview, not check out button. Fix after set up SQLite.
 2. how to enter data as a developer into database SQLite: copy and past codes to create a separate activity and set the TextViews to EditTexts. Hidden ofc. Testing purpose,
 will not hide it and probably in final version just change it to TextView.
 3. In moderator addfood, do make it so that they can delete foods as well. not prioritized.
+4. add warning msg upon exit recyclerView updater, if update button was not pressed. "want not saving order?"

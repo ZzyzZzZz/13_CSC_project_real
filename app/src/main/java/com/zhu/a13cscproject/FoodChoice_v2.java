@@ -1,14 +1,15 @@
 package com.zhu.a13cscproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 public class FoodChoice_v2 extends AppCompatActivity {
 
     RecyclerView recyclerview;
-    FloatingActionButton to_cart_fbtn, to_addfood;
+    FloatingActionButton to_cart_fbtn, to_addfood_fbtn;
 
     FoodDatabase foodDB; //get my database
     ArrayList<String> food_id, food_name, food_price, food_qty, food_description;
@@ -31,13 +32,21 @@ public class FoodChoice_v2 extends AppCompatActivity {
 
         recyclerview = findViewById(R.id.food_recyclerview);
         to_cart_fbtn = findViewById(R.id.to_cart);
-        to_addfood = findViewById(R.id.to_addfood);
-        to_addfood.show(); // TODO REMEMBER TO CHANGE TO HIDE IN FINAL VERSION. For current testing purpose I will leave it showing.
-        to_addfood.setOnClickListener(new View.OnClickListener() {
+        to_cart_fbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FoodChoice_v2.this, OrderConfirm.class);
+                startActivity(intent);
+            }
+        });
+        to_addfood_fbtn = findViewById(R.id.to_addfood);
+        to_addfood_fbtn.show(); // TODO REMEMBER TO CHANGE TO HIDE IN FINAL VERSION. For current testing purpose I will leave it showing.
+        to_addfood_fbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FoodChoice_v2.this, FoodSpecifications.class);
                 startActivity(intent);
+
             }
         });
 
@@ -50,18 +59,17 @@ public class FoodChoice_v2 extends AppCompatActivity {
 
         storeDataArrays();
 
-        customAdapter = new CustomAdapter(FoodChoice_v2.this, food_id, food_name, food_price, food_qty);
+        customAdapter = new CustomAdapter(this, food_id, food_name, food_price, food_qty, food_description);
         recyclerview.setAdapter(customAdapter);//set adapter to my own adapter
         recyclerview.setLayoutManager(new LinearLayoutManager(FoodChoice_v2.this));//linear layout for a vertical scroll
         //what is LayoutManager? See link below for description:
         //https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView.LayoutManager
     }
 
-
     void storeDataArrays(){// get the data from SQL and add them to the predefined variables that holds these values.
         Cursor cursor = foodDB.readAllData();
         if(cursor.getCount() == 0) {//if getCount() == 0 then there are no data
-            Toast.makeText(this, "No Food data, please load SQL", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No Food data, please load SQLdataset", Toast.LENGTH_SHORT).show();
         }else{
             while (cursor.moveToNext()){
                 food_id.add(cursor.getString(0)); //column count, basically arrange where they are.

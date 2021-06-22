@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.13CSCProject">
-        <activity android:name=".FoodSpecifications"></activity>
+        <activity android:name=".UpdateActivity"></activity>
+        <activity android:name=".FoodSpecifications" />
         <activity android:name=".FoodChoice_v2" />
         <activity
             android:name=".OrderConfirm"
