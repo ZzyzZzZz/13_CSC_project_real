@@ -27,6 +27,8 @@ public class SecondActivity extends AppCompatActivity {
     ImageView imageView;
     TextView name, email;
     Button signOut, cont_FoodChoice, revoke_signin_btn;
+    GlobalClass gc;
+    Integer dev_mode;
 
     GoogleSignInClient mGoogleSignInClient;
 
@@ -34,6 +36,11 @@ public class SecondActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+
+        GlobalClass globalClass = (GlobalClass)getApplicationContext();//my developer mode
+        this.gc = globalClass;
+        gc.setDev_mode(0);
+        dev_mode = gc.getDev_mode();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)// these lines are from google, they directed the integration
                 .requestEmail()
@@ -65,24 +72,38 @@ public class SecondActivity extends AppCompatActivity {
 
         cont_FoodChoice();
 
-        revoke_signin_btn = findViewById(R.id.revoke_signin);
+        revoke_signin_btn = findViewById(R.id.revoke_signin);//dev_mode button atm
         revoke_signin_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (v.getId() == R.id.revoke_signin){
-                    mGoogleSignInClient.revokeAccess()
-                            .addOnCompleteListener(SecondActivity.this, new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull @NotNull Task<Void> task) {
-                                    Toast.makeText(SecondActivity.this, "revoked successfully", Toast.LENGTH_LONG).show();
-                                }
-                            });
-                    finish();
-                }else{
-                    Toast.makeText(SecondActivity.this, "revoke failed", Toast.LENGTH_SHORT).show();
+                if (dev_mode == 0){
+                    gc.setDev_mode(1);
+                    Toast.makeText(SecondActivity.this, "dev mode activated", Toast.LENGTH_SHORT).show();
+                }
+                if (dev_mode == 1){
+                    gc.setDev_mode(0);
+                    Toast.makeText(SecondActivity.this, "dev mode deactivated", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+//        revoke_signin_btn = findViewById(R.id.revoke_signin);
+//        revoke_signin_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (v.getId() == R.id.revoke_signin){
+//                    mGoogleSignInClient.revokeAccess()
+//                            .addOnCompleteListener(SecondActivity.this, new OnCompleteListener<Void>() {
+//                                @Override
+//                                public void onComplete(@NonNull @NotNull Task<Void> task) {
+//                                    Toast.makeText(SecondActivity.this, "revoked successfully", Toast.LENGTH_LONG).show();
+//                                }
+//                            });
+//                    finish();
+//                }else{
+//                    Toast.makeText(SecondActivity.this, "revoke failed", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
 
 
 

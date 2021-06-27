@@ -1,7 +1,9 @@
 package com.zhu.a13cscproject;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Debug;
@@ -12,33 +14,46 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class UpdateActivity extends AppCompatActivity {
 
     EditText food_qty;
     Button update_btn;
     TextView food_name, food_price, food_description;
     ImageButton add_input, subtract_input;
+    FloatingActionButton delete_fbtn;
 
-    String id, name, price, qty, description;
-    Integer qty_int;
+    String id;
+    String name;
+    String price;
+    String qty;
+    String description;
+    GlobalClass gc;
+    Integer qty_int, dev_mode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
 
+        GlobalClass globalClass = (GlobalClass)getApplicationContext(); //dev mode
+        this.gc = globalClass;
+        dev_mode = gc.getDev_mode();
+
         add_input = findViewById(R.id.add_btn2); //the add qty button, in this case it can be used to change the qty of that particular food. Or you can enter it, up to you.
         add_input.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                qty_int = Integer.parseInt(qty);
+                qty_int = Integer.parseInt(qty);// first change qty of selected food to int
 
-                if (qty_int < 10) {
+                if (qty_int < 10) {// then do calculations
                     qty_int += 1;
-                    qty = Integer.toString(qty_int);
-                    food_qty.setText(qty);
+                    qty = Integer.toString(qty_int);// new value to string
+                    food_qty.setText(qty); // then set the original qty variable to the new number.
                 }else{
-                    Toast.makeText(UpdateActivity.this, "leave some " + name + "for others!", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(UpdateActivity.this, "leave some " + name + "for others!", Toast.LENGTH_SHORT).show();
+                    tooManyItem();
                 }
 
             }
@@ -54,7 +69,8 @@ public class UpdateActivity extends AppCompatActivity {
                     qty = Integer.toString(qty_int);
                     food_qty.setText(qty);
                 }else{
-                    Toast.makeText(UpdateActivity.this, "You can't have negative amount of " + name , Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(UpdateActivity.this, "You can't have negative amount of " + name , Toast.LENGTH_SHORT).show();
+                    tooFewItem();
                 }
 
             }
@@ -66,10 +82,26 @@ public class UpdateActivity extends AppCompatActivity {
         food_price = findViewById(R.id.food_price2);
         food_qty = findViewById(R.id.food_qty2);
         food_description = findViewById(R.id.food_description2);
+        delete_fbtn = findViewById(R.id.delete_item);// only show in dev_mode enabled.
+        if(dev_mode == 1){
+            delete_fbtn.show();//show if dev_mode enabled
+        }else{
+            delete_fbtn.hide();//other wise hide
+        }
+        delete_fbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { // to delete items in SQLite as a whole
+                confirmDeleteDialog();
+            }
+        });
+
+
 
 
         //setting data first
         getAndSetIntentData();
+
+
 
 
         update_btn = findViewById(R.id.update_sql_btn2);
@@ -109,5 +141,52 @@ public class UpdateActivity extends AppCompatActivity {
         }else{
             Toast.makeText(this,"No Data, please check on SQL dataset", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    void confirmDeleteDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete " + name + "?");
+        builder.setMessage("Delete " + name + " permanently?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                FoodDatabase db = new FoodDatabase(UpdateActivity.this); // FoodDatabase object
+                db.deleteOneRow(id); // exe the delete row with the respective id.
+                finish();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //nothing since we don't want to do anything.
+            }
+        });
+        builder.create().show();//or alert msg won't show. Tested.
+    }
+
+    void tooManyItem(){//maximum qty of food overflow
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("More than 10 " + name + "!");
+        builder.setMessage("10 " + name + "! You got some impressive skills there to finish all these. Unfortunately you got to leave some for others.");
+        builder.setPositiveButton("Fine, I'll leave some for others", new DialogInterface.OnClickListener() {//button clicked, back to ordering food.
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //nothing here, only a reminder msg
+            }
+        });
+        builder.create().show();//must have for all alertDialog
+    }
+
+    void tooFewItem(){//minimum qty of food prevention.
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("You ain't selling no " + name + " to me");
+        builder.setMessage("How do I know? Well, that's a story for another time.");
+        builder.setPositiveButton("Yeah, right.", new DialogInterface.OnClickListener() {//button clicked, back to ordering food.
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //nothing here as well, back to food selection.
+            }
+        });
+        builder.create().show();//must have for all alertDialog
     }
 }

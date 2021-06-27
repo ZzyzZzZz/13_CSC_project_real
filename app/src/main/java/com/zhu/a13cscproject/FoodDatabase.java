@@ -79,7 +79,7 @@ class FoodDatabase extends SQLiteOpenHelper{
 
     }
 
-    void updateData(String row_id, String qty){
+    void updateData(String row_id, String qty){// for users, add or subtract qty of food items
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_QUANTITY, qty);
@@ -92,5 +92,15 @@ class FoodDatabase extends SQLiteOpenHelper{
             Toast.makeText(context, "Changes saved", Toast.LENGTH_SHORT).show();
         }
         db.close();
+    }
+
+    void deleteOneRow(String row_id){ //to delete data in dev mode, add or subtract food items
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.delete(TABLE_NAME,"_id=?", new String[]{row_id});
+        if(result == -1){
+            Toast.makeText(context, "Failed to Delete", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context, "Item Deleted", Toast.LENGTH_SHORT).show();
+        }
     }
 }

@@ -2,8 +2,11 @@ package com.zhu.a13cscproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,12 +28,15 @@ public class MainActivity extends AppCompatActivity {
     SignInButton signin; //signin button from google
     int RC_SIGN_IN = 0; //declear variable
     GoogleSignInClient mGoogleSignInClient; //Declear member variable, not to share with other activities.
+    boolean connected = false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
 //        View backgroundimage = findViewById(R.id.background);
 //        Drawable background = backgroundimage.getBackground();
@@ -94,13 +100,14 @@ public class MainActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent.
         if (requestCode == RC_SIGN_IN) { //check if RC_SIGN_IN is correct
             // The Task returned from this call is always completed, no need to attach
             // a listener.
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
         }
+
     }
 
 

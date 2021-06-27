@@ -3,6 +3,7 @@ package com.zhu.a13cscproject;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,6 +21,8 @@ public class FoodChoice_v2 extends AppCompatActivity {
 
     RecyclerView recyclerview;
     FloatingActionButton to_cart_fbtn, to_addfood_fbtn;
+    GlobalClass gc; //for dev mode
+    Integer dev_mode;// for dev mode
 
     FoodDatabase foodDB; //get my database
     ArrayList<String> food_id, food_name, food_price, food_qty, food_description;
@@ -30,6 +33,10 @@ public class FoodChoice_v2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_choice_v2);
 
+        GlobalClass globalClass = (GlobalClass)getApplicationContext(); //dev mode
+        this.gc = globalClass;
+        dev_mode = gc.getDev_mode();
+
         recyclerview = findViewById(R.id.food_recyclerview);
         to_cart_fbtn = findViewById(R.id.to_cart);
         to_cart_fbtn.setOnClickListener(new View.OnClickListener() {
@@ -39,8 +46,13 @@ public class FoodChoice_v2 extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        to_addfood_fbtn = findViewById(R.id.to_addfood);
-        to_addfood_fbtn.show(); // TODO REMEMBER TO CHANGE TO HIDE IN FINAL VERSION. For current testing purpose I will leave it showing.
+        to_addfood_fbtn = findViewById(R.id.to_addfood);//this option will only show up if dev_mode is enabled.
+        if (dev_mode == 1){//this hide function don't work perfectly and I am fine with it, I am the only person needed to know how to use it...
+            to_addfood_fbtn.show();
+        }else{
+            to_addfood_fbtn.hide();
+        }
+
         to_addfood_fbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +84,7 @@ public class FoodChoice_v2 extends AppCompatActivity {
             Toast.makeText(this, "No Food data, please load SQLdataset", Toast.LENGTH_SHORT).show();
         }else{
             while (cursor.moveToNext()){
-                food_id.add(cursor.getString(0)); //column count, basically arrange where they are.
+                food_id.add(cursor.getString(0)); //column count, basically arrange where they are in SQLite.
                 food_name.add(cursor.getString(1));
                 food_price.add(cursor.getString(2));
                 food_qty.add(cursor.getString(3));
