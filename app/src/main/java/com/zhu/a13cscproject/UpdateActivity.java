@@ -4,9 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Debug;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -191,4 +189,30 @@ public class UpdateActivity extends AppCompatActivity {
         });
         builder.create().show();//must have for all alertDialog
     }
+
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Toast.makeText(this,"Changes Not Saved", Toast.LENGTH_SHORT).show();
+    }
 }
+
+//    @Override
+//    public void onBackPressed() {
+//
+//
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setTitle("Changes Not Saved");
+//        builder.setMessage("please go back through the update button");
+//        builder.setNegativeButton("No, stay", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                //nothing
+//            }
+//        });
+//        super.onBackPressed();
+//        finish();
+//    }
+//}
