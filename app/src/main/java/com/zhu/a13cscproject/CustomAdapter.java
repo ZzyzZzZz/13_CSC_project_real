@@ -25,13 +25,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     Activity activity;
 
     //when this class (activity) is initialized in FoodChoice, pass all ArrayLists created here to that class. Then set global variables so we can access them in other classes.
-    CustomAdapter(Context context,
+    CustomAdapter(Activity activity,
+                  Context context,
                   ArrayList food_id,
                   ArrayList food_name,
                   ArrayList food_price,
                   ArrayList food_qty,
                   ArrayList food_description
     ){
+        this.activity = activity;
         this.context = context;
         this.food_id = food_id;
         this.food_name = food_name;
@@ -72,7 +74,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 intent.putExtra("price", String.valueOf(food_price.get(position)));
                 intent.putExtra("qty", String.valueOf(food_qty.get(position)));
                 intent.putExtra("description", String.valueOf(food_description.get(position)));
-                context.startActivity(intent);
+                activity.startActivityForResult(intent,1);
             }
         });
 

@@ -62,6 +62,7 @@ public class FoodChoice_v2 extends AppCompatActivity {
             }
         });
 
+
         foodDB = new FoodDatabase(FoodChoice_v2.this); // here are my variables for RecyclerView
         food_id = new ArrayList<>();
         food_name = new ArrayList<>();
@@ -71,11 +72,19 @@ public class FoodChoice_v2 extends AppCompatActivity {
 
         storeDataArrays();
 
-        customAdapter = new CustomAdapter(this, food_id, food_name, food_price, food_qty, food_description);
+        customAdapter = new CustomAdapter(FoodChoice_v2.this, this, food_id, food_name, food_price, food_qty, food_description);
         recyclerview.setAdapter(customAdapter);//set adapter to my own adapter
         recyclerview.setLayoutManager(new LinearLayoutManager(FoodChoice_v2.this));//linear layout for a vertical scroll
         //what is LayoutManager? See link below for description:
         //https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView.LayoutManager
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1){
+            recreate();
+        }
     }
 
     void storeDataArrays(){// get the data from SQL and add them to the predefined variables that holds these values.

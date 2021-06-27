@@ -113,8 +113,10 @@ public class UpdateActivity extends AppCompatActivity {
                 foodDB.updateData(id, qty);
                 //so you don't click twice by accident, also, to update the recyclerview as well, every time FoodChoice_v2 was called it goes through the load process of recyclerview, which includes the new data
                 // not the most efficient way, but let's let this version slide.
-                Intent intent = new Intent(UpdateActivity.this, FoodChoice_v2.class);
-                startActivity(intent);
+
+                finish();
+//                Intent intent = new Intent(UpdateActivity.this, FoodChoice_v2.class);
+//                startActivity(intent);
             }
         });
 
