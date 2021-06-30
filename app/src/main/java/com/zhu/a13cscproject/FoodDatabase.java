@@ -67,6 +67,7 @@ class FoodDatabase extends SQLiteOpenHelper{
         String query = "SELECT * FROM " + TABLE_NAME; //SQL query, select all from table_name, which is my database table.
         SQLiteDatabase db = this.getReadableDatabase(); //database object
 
+
         Cursor cursor = null; //define cursor
         if(db != null) { //not null means there are some data
             cursor = db.rawQuery(query, null);// all data in cursor
