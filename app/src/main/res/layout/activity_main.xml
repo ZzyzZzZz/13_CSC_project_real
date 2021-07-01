@@ -9,9 +9,6 @@
 
 
 
-
-
-
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"
         android:layout_width="119dp"
@@ -21,6 +18,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.631" />
+
+    <TextView
+        android:id="@+id/MRGS_EAT_logo"
+        android:layout_width="307dp"
+        android:layout_height="133dp"
+        android:text="mrgs eat"
+        android:textSize="60sp"
+        android:textAlignment="center"
+        android:fontFamily="@font/title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.28" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="319dp"
+        android:layout_height="151dp"
+        android:layout_marginBottom="56dp"
+        android:fontFamily="@font/txt"
+        android:text="Please make sure you are connected to the student BYOD network before signing in"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

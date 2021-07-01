@@ -3,27 +3,31 @@ package com.zhu.a13cscproject;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class OrderConfirm_v2 extends AppCompatActivity {
 
     RecyclerView recyclerview;
-    FloatingActionButton to_senddata_btn, to_addfood_fbtn;
+    Button to_senddata_btn;
 //    GlobalClass gc; //for dev mode
-    Integer dev_mode, loop;// for dev mode
+    Integer dev_mode;// for dev mode
+
+
+    TextView total_txt;
 
     FoodDatabase_OrderConfirm foodDB; //get my database
     FoodDatabase foodDB_first;
@@ -33,17 +37,16 @@ public class OrderConfirm_v2 extends AppCompatActivity {
 
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_confirm_v2);
 
-//        GlobalClass globalClass = (GlobalClass)getApplicationContext(); //dev mode
-//        this.gc = globalClass;
-//        dev_mode = gc.getDev_mode();
 
         recyclerview = findViewById(R.id.food_recyclerview);
-        to_senddata_btn = findViewById(R.id.to_cart);
+        to_senddata_btn = findViewById(R.id.to_order_finished);
         to_senddata_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,21 +56,10 @@ public class OrderConfirm_v2 extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//        to_addfood_fbtn = findViewById(R.id.to_addfood);//this option will only show up if dev_mode is enabled.
-//        if (dev_mode == 1){//this hide function don't work perfectly and I am fine with it, I am the only person needed to know how to use it...
-//            to_addfood_fbtn.show();
-//        }else{
-//            to_addfood_fbtn.hide();
-//        }
-//
-//        to_addfood_fbtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(OrderConfirm_v2.this, FoodSpecifications_OrderConfirm.class);
-//                startActivity(intent);
-//
-//            }
-//        });
+
+        total_txt = findViewById(R.id.total_txt);
+        total_txt.setText("Total");
+
 
 
 
@@ -103,6 +95,8 @@ public class OrderConfirm_v2 extends AppCompatActivity {
 
 
         loopForDataRemoval(size);
+
+
 
 //        viod DeleteUnusedData(){
 //            foodDB.addfood(food_name_1.get(counter), food_price_1.indexOf(counter), food_qty_1.get(counter), food_description_1.indexOf(counter));

@@ -5,19 +5,22 @@
     android:id="@+id/food_select"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SecondActivity"
-    android:background="#000000">
+    android:background="#000000"
+    tools:context=".IdentityCheck">
+
 
     <Button
         android:id="@+id/sign_out_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="signoutbutton"
+        android:layout_width="110dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="92dp"
+        android:background="@drawable/rounded_buttons_red"
+        android:text="Change User"
+
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textemail" />
+        app:layout_constraintHorizontal_bias="0.212"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -26,6 +29,7 @@
         android:layout_marginTop="44dp"
         android:contentDescription="imageview"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintCircleRadius="50dp"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -33,10 +37,12 @@
 
     <TextView
         android:id="@+id/textName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="242dp"
+        android:layout_height="67dp"
         android:layout_marginTop="52dp"
+        android:fontFamily="@font/txt"
         android:text="Name"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,10 +50,13 @@
 
     <TextView
         android:id="@+id/textemail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_width="302dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/txt"
         android:text="Email"
+        android:textSize="15sp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textName" />
@@ -56,21 +65,22 @@
         android:id="@+id/cont_FoodChoice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="continue"
+        android:layout_marginBottom="96dp"
+        android:text="Yes, it's me"
+        android:background="@drawable/rounded_buttons"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_out_button" />
+        app:layout_constraintHorizontal_bias="0.808"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/revoke_signin"
+        android:id="@+id/dev_mode_activate_fbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="196dp"
         android:text="revoke signin"
-        app:layout_constraintBottom_toTopOf="@+id/cont_FoodChoice"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_out_button" />
+        app:layout_constraintHorizontal_bias="0.944"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

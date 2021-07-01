@@ -5,7 +5,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#000000"
     android:id="@+id/mainLayout">
 
     <androidx.cardview.widget.CardView
@@ -29,6 +28,8 @@
                 android:id="@+id/food_id_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/txt"
+                android:visibility="gone"
                 android:text="1"
                 android:textColor="#000"
                 android:textSize="40sp"
@@ -39,9 +40,10 @@
 
             <TextView
                 android:id="@+id/food_name_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="64dp"
+                android:layout_width="170dp"
+                android:layout_height="43dp"
+                android:layout_marginStart="40dp"
+                android:fontFamily="@font/txt"
                 android:text="foodname"
                 android:textColor="#000"
                 android:textSize="30sp"
@@ -52,22 +54,26 @@
 
             <TextView
                 android:id="@+id/food_price_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_width="47dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="56dp"
+                android:fontFamily="@font/txt"
+                android:gravity="center"
                 android:text="price"
                 android:textColor="#000"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.471" />
 
             <TextView
                 android:id="@+id/food_qty_txt"
-                android:layout_width="56dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="216dp"
+                android:layout_width="29dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="324dp"
+                android:fontFamily="@font/txt"
                 android:text="qty"
                 android:textColor="#000"
                 android:textSize="20sp"
@@ -75,13 +81,14 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.485" />
+                app:layout_constraintVertical_bias="0.507" />
 
             <TextView
                 android:id="@+id/food_description_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="food_description"
+                android:fontFamily="@font/txt"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -77,7 +77,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 activity.startActivityForResult(intent,1);
             }
         });
-
     }
 
     @Override

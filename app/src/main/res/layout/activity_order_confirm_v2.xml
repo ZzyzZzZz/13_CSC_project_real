@@ -4,47 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OrderConfirm_v2"
-    android:background="#000000">
+    android:background="#000000"
+    tools:context=".OrderConfirm_v2">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/food_recyclerview"
-        android:layout_width="409dp"
-        android:layout_height="727dp"
+        android:layout_width="400dp"
+        android:layout_height="590dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.285" />
+        app:layout_constraintVertical_bias="0.0" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/to_cart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="44dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:fabCustomSize="80dp"
+    <Button
+        android:id="@+id/to_order_finished"
+        android:layout_width="136dp"
+        android:layout_height="73dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/rounded_buttons"
+        android:fontFamily="@font/txt"
+        android:text="Purchase"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/total_txt"
+        android:layout_width="206dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="88dp"
+        android:fontFamily="@font/txt"
+        android:text="Total Cost"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/total_cost"
+        android:layout_width="128dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="28dp"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/dollar_sign_orderconfirm"
+        android:layout_width="58dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="20dp"
+        android:text="$"
+        android:fontFamily="@font/txt"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:maxImageSize="50dp"
-        app:srcCompat="@drawable/ic_baseline_shopping_cart_24"
-        android:contentDescription="to confirm order"/>
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/to_addfood"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="44dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:contentDescription="For adding food items"
-        android:src="@drawable/ic_baseline_android_24"
-        app:fabCustomSize="80dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:maxImageSize="50dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

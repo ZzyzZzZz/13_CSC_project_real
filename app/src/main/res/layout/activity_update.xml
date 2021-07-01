@@ -9,31 +9,32 @@
 
     <ImageButton
         android:id="@+id/subtract_btn2"
-        android:layout_width="96dp"
-        android:layout_height="61dp"
-        android:layout_marginStart="28dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.447"
+        app:layout_constraintVertical_bias="0.435"
         app:srcCompat="@drawable/ic_baseline_remove_circle_24" />
 
     <ImageButton
         android:id="@+id/add_btn2"
-        android:layout_width="93dp"
-        android:layout_height="54dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.443"
+        app:layout_constraintVertical_bias="0.435"
         app:srcCompat="@drawable/ic_baseline_add_circle_24" />
 
     <Button
         android:id="@+id/update_sql_btn2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="add order"
+        android:fontFamily="@font/txt"
+        android:text="Confirm Order Change"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,22 +43,30 @@
 
     <EditText
         android:id="@+id/food_qty2"
-        android:layout_width="101dp"
-        android:layout_height="36dp"
+        android:layout_width="175dp"
+        android:layout_height="114dp"
         android:ems="10"
+        android:focusable="false"
+        android:fontFamily="@font/txt"
+        android:gravity="center"
         android:inputType="textPersonName"
         android:text="quantity"
+        android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.457" />
+        app:layout_constraintVertical_bias="0.427" />
 
     <TextView
         android:id="@+id/food_name2"
-        android:layout_width="237dp"
-        android:layout_height="52dp"
+        android:layout_width="336dp"
+        android:layout_height="80dp"
+        android:fontFamily="@font/txt"
         android:text="food name"
+        android:textSize="60sp"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,20 +75,24 @@
 
     <TextView
         android:id="@+id/food_price2"
-        android:layout_width="237dp"
-        android:layout_height="52dp"
+        android:layout_width="56dp"
+        android:layout_height="78dp"
+        android:fontFamily="@font/txt"
         android:text="food price"
+        android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.243" />
+        app:layout_constraintVertical_bias="0.24" />
 
     <TextView
         android:id="@+id/food_description2"
         android:layout_width="296dp"
         android:layout_height="232dp"
         android:text="food description"
+        android:fontFamily="@font/txt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -98,5 +111,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_baseline_android_24" />
+
+    <TextView
+        android:id="@+id/dollar_sign"
+        android:layout_width="60dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="160dp"
+        android:fontFamily="@font/txt"
+        android:text="$"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.663"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,6 @@ package com.zhu.a13cscproject;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.View;
 import android.widget.Toast;
 
@@ -38,7 +37,7 @@ public class FoodChoice_v2 extends AppCompatActivity {
         dev_mode = gc.getDev_mode();
 
         recyclerview = findViewById(R.id.food_recyclerview);
-        to_cart_fbtn = findViewById(R.id.to_cart);
+        to_cart_fbtn = findViewById(R.id.to_order_finished);
         to_cart_fbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

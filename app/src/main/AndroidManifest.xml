@@ -22,7 +22,7 @@
             android:parentActivityName=".FoodChoice" /> <!-- according to tutorial, I am making food_choice the parent activity, and it works. -->
         <!-- update to my comment, this is to carry variable over, so I am kind of extending .FoodChoice class -->
         <activity android:name=".FoodChoice" />
-        <activity android:name=".SecondActivity" />
+        <activity android:name=".IdentityCheck" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

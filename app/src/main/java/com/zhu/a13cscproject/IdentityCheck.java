@@ -22,11 +22,15 @@ import com.google.android.gms.tasks.Task;
 
 import org.jetbrains.annotations.NotNull;
 
-public class SecondActivity extends AppCompatActivity {
+import java.util.Objects;
+
+import static android.view.View.GONE;
+
+public class IdentityCheck extends AppCompatActivity {
 
     ImageView imageView;
     TextView name, email;
-    Button signOut, cont_FoodChoice, revoke_signin_btn;
+    Button signOut, cont_FoodChoice, dev_mode_fbtn;
     GlobalClass gc;
     Integer dev_mode;
 
@@ -35,7 +39,7 @@ public class SecondActivity extends AppCompatActivity {
     @Override // this part is to proceed in app after login, fetching data
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.activity_identitycheck);
 
         GlobalClass globalClass = (GlobalClass)getApplicationContext();//my developer mode
         this.gc = globalClass;
@@ -58,10 +62,10 @@ public class SecondActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (v.getId() == R.id.sign_out_button) {
                     mGoogleSignInClient.signOut()
-                            .addOnCompleteListener(SecondActivity.this, new OnCompleteListener<Void>() {
+                            .addOnCompleteListener(IdentityCheck.this, new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull @NotNull Task<Void> task) {
-                                    Toast.makeText(SecondActivity.this, "signed out successfully", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(IdentityCheck.this, "signed out successfully", Toast.LENGTH_LONG).show();
                                     finish();
                                 }
                             });
@@ -72,38 +76,21 @@ public class SecondActivity extends AppCompatActivity {
 
         cont_FoodChoice();
 
-        revoke_signin_btn = findViewById(R.id.revoke_signin);//dev_mode button atm
-        revoke_signin_btn.setOnClickListener(new View.OnClickListener() {
+        dev_mode_fbtn = findViewById(R.id.dev_mode_activate_fbtn);//dev_mode floating button
+        dev_mode_fbtn.setVisibility(GONE);// just to get rid of it when distributing the app.
+        dev_mode_fbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (dev_mode == 0){
                     gc.setDev_mode(1);
-                    Toast.makeText(SecondActivity.this, "dev mode activated", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(IdentityCheck.this, "dev mode activated", Toast.LENGTH_SHORT).show();
                 }
                 if (dev_mode == 1){
                     gc.setDev_mode(0);
-                    Toast.makeText(SecondActivity.this, "dev mode deactivated", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(IdentityCheck.this, "dev mode deactivated", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-//        revoke_signin_btn = findViewById(R.id.revoke_signin);
-//        revoke_signin_btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (v.getId() == R.id.revoke_signin){
-//                    mGoogleSignInClient.revokeAccess()
-//                            .addOnCompleteListener(SecondActivity.this, new OnCompleteListener<Void>() {
-//                                @Override
-//                                public void onComplete(@NonNull @NotNull Task<Void> task) {
-//                                    Toast.makeText(SecondActivity.this, "revoked successfully", Toast.LENGTH_LONG).show();
-//                                }
-//                            });
-//                    finish();
-//                }else{
-//                    Toast.makeText(SecondActivity.this, "revoke failed", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
 
 
 
@@ -112,6 +99,9 @@ public class SecondActivity extends AppCompatActivity {
         if (account != null) {
             String personName = account.getDisplayName();
             String personEmail = account.getEmail();
+            if (Objects.equals(personName, personEmail)){//this will detect and stop username and email being displayed together, since school name and email are the same.
+                personName = null;
+            }
             Uri personPhoto = account.getPhotoUrl();
             //three lines resetting variables
             name.setText(personName);
@@ -124,25 +114,13 @@ public class SecondActivity extends AppCompatActivity {
 
     }
 
-//    private void signOut() {
-//
-//        mGoogleSignInClient.signOut() //signOut function
-//                .addOnCompleteListener(this, new OnCompleteListener<Void>() { //code from google, basically just signing out and close activity
-//                    @Override
-//                    public void onComplete(@NonNull Task<Void> task) {
-//                        Toast.makeText(SecondActivity.this, "signed out successfully", Toast.LENGTH_LONG).show();
-//                        finish();
-//                    }
-//                        // ...
-//                });
-//    }
 
     private void cont_FoodChoice() { // method to open Food Choice
         cont_FoodChoice = findViewById(R.id.cont_FoodChoice); // continue button to FoodChoice activity
         cont_FoodChoice.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) { //if button clicked go launch the activity
-               Intent intent = new Intent(SecondActivity.this, FoodChoice_v2.class); //create intent of FoodChoice and start it
+               Intent intent = new Intent(IdentityCheck.this, FoodChoice_v2.class); //create intent of FoodChoice and start it
                startActivity(intent);
            }
         });

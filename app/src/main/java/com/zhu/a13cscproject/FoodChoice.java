@@ -1,14 +1,8 @@
 package com.zhu.a13cscproject;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -155,7 +149,7 @@ public class FoodChoice extends AppCompatActivity {
 //
 //}
 
-    to_cart_btn = findViewById(R.id.to_cart);
+    to_cart_btn = findViewById(R.id.to_order_finished);
 
 
 
