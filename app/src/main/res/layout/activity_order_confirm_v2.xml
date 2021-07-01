@@ -9,8 +9,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/food_recyclerview"
-        android:layout_width="400dp"
-        android:layout_height="590dp"
+        android:layout_width="416dp"
+        android:layout_height="589dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.454"
@@ -45,11 +45,13 @@
 
     <TextView
         android:id="@+id/total_cost"
-        android:layout_width="128dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginBottom="28dp"
-        android:text="0"
+        android:layout_width="118dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/txt"
+        android:textSize="40sp"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -57,13 +59,14 @@
         android:id="@+id/dollar_sign_orderconfirm"
         android:layout_width="58dp"
         android:layout_height="64dp"
-        android:layout_marginBottom="20dp"
-        android:text="$"
+        android:layout_marginBottom="16dp"
         android:fontFamily="@font/txt"
+        android:gravity="center"
+        android:text="$"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.079"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

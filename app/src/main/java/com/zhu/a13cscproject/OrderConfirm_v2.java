@@ -12,10 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 
@@ -25,17 +21,20 @@ public class OrderConfirm_v2 extends AppCompatActivity {
     Button to_senddata_btn;
 //    GlobalClass gc; //for dev mode
     Integer dev_mode;// for dev mode
-    float price_calculation;
+    Float price_calculation;
+    Float final_cost = 0.0f;
+
     Integer qty_calculation;
 
 
-    TextView total_txt;
+    TextView total_txt, total_price_txt;
+
+//    public static final String FOOD_COST = null;
 
     FoodDatabase_OrderConfirm foodDB; //get my database
     FoodDatabase foodDB_first;
     ArrayList<String> food_id, food_name, food_price, food_qty, food_description;
     ArrayList<String> food_id_1, food_name_1, food_price_1, food_qty_1, food_description_1;
-    ArrayList<Integer> cost_final;
     CustomAdapter_OrderConfirm customAdapter;
 
 
@@ -57,14 +56,13 @@ public class OrderConfirm_v2 extends AppCompatActivity {
                 foodDB.close();
                 foodDB_first.close();
                 Intent intent = new Intent(OrderConfirm_v2.this, SendData.class);
+//                intent.putExtra(FOOD_COST, final_cost);//Todo carry over a variable to display final amount.
                 startActivity(intent);
             }
         });
 
         total_txt = findViewById(R.id.total_txt);
         total_txt.setText("Total");
-
-        cost_final = new ArrayList<>();
 
 
 
@@ -78,10 +76,6 @@ public class OrderConfirm_v2 extends AppCompatActivity {
         food_description = new ArrayList<>();
 
         storeDataArrays_first();
-
-
-
-        int size = food_qty.size();
 
 
 
@@ -99,9 +93,10 @@ public class OrderConfirm_v2 extends AppCompatActivity {
         food_qty_1 = food_qty;
         food_description_1 = food_description;
 
-
+        int size = food_qty.size();
         loopForDataRemoval(size);
-        loopForCostCalculation(size);
+        int size_1 = food_qty_1.size();
+        loopForCostCalculation(size_1, final_cost);
 
 
 
@@ -117,7 +112,6 @@ public class OrderConfirm_v2 extends AppCompatActivity {
         //https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView.LayoutManager
 
         storeDataArrays();
-
 
 
 
@@ -170,7 +164,6 @@ public class OrderConfirm_v2 extends AppCompatActivity {
             if (food_qty_1.get(counter).equals("0")) {
                 food_qty_1.get(counter);
                 size -= 1;
-//                System.out.println(food_qty_1_counter);
                 food_id_1.remove(counter);
                 food_name_1.remove(counter);
                 food_price_1.remove(counter);
@@ -180,17 +173,18 @@ public class OrderConfirm_v2 extends AppCompatActivity {
                 break;
             }
         }
-        }
-    private void loopForCostCalculation(int size) {
-        for (int counter = 0; counter < size; counter++) {
+    }
+    float loopForCostCalculation(int size_1, Float final_cost){
+        float final_cost_append = 0.0f;//idk why float need f but there it is
+        for (int counter = 0; counter < size_1; counter++) {
             price_calculation = Float.parseFloat(String.valueOf(food_price_1.get(counter)));
             qty_calculation = Integer.parseInt(String.valueOf(food_qty_1.get(counter)));
-            cost_final.add((int) (price_calculation * qty_calculation));
+            final_cost_append = price_calculation * qty_calculation;
+            final_cost = final_cost + final_cost_append;
             System.out.println(price_calculation);
-            System.out.println("break");
-            System.out.println(qty_calculation);
-            System.out.println("break 2");
         }
-
+        total_price_txt = findViewById(R.id.total_cost);
+        total_price_txt.setText(String.valueOf(final_cost));
+        return final_cost;
     }
 }

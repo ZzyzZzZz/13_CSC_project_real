@@ -75,17 +75,17 @@
 
     <TextView
         android:id="@+id/food_price2"
-        android:layout_width="56dp"
-        android:layout_height="78dp"
+        android:layout_width="173dp"
+        android:layout_height="79dp"
         android:fontFamily="@font/txt"
         android:text="food price"
         android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintHorizontal_bias="0.672"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.24" />
+        app:layout_constraintVertical_bias="0.245" />
 
     <TextView
         android:id="@+id/food_description2"
@@ -114,14 +114,14 @@
 
     <TextView
         android:id="@+id/dollar_sign"
-        android:layout_width="60dp"
-        android:layout_height="75dp"
+        android:layout_width="46dp"
+        android:layout_height="77dp"
         android:layout_marginTop="160dp"
         android:fontFamily="@font/txt"
         android:text="$"
         android:textSize="60sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.663"
+        app:layout_constraintHorizontal_bias="0.316"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
