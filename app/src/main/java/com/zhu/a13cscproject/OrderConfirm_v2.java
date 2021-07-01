@@ -25,6 +25,8 @@ public class OrderConfirm_v2 extends AppCompatActivity {
     Button to_senddata_btn;
 //    GlobalClass gc; //for dev mode
     Integer dev_mode;// for dev mode
+    float price_calculation;
+    Integer qty_calculation;
 
 
     TextView total_txt;
@@ -33,6 +35,7 @@ public class OrderConfirm_v2 extends AppCompatActivity {
     FoodDatabase foodDB_first;
     ArrayList<String> food_id, food_name, food_price, food_qty, food_description;
     ArrayList<String> food_id_1, food_name_1, food_price_1, food_qty_1, food_description_1;
+    ArrayList<Integer> cost_final;
     CustomAdapter_OrderConfirm customAdapter;
 
 
@@ -43,6 +46,7 @@ public class OrderConfirm_v2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_confirm_v2);
+
 
 
         recyclerview = findViewById(R.id.food_recyclerview);
@@ -59,6 +63,8 @@ public class OrderConfirm_v2 extends AppCompatActivity {
 
         total_txt = findViewById(R.id.total_txt);
         total_txt.setText("Total");
+
+        cost_final = new ArrayList<>();
 
 
 
@@ -95,6 +101,7 @@ public class OrderConfirm_v2 extends AppCompatActivity {
 
 
         loopForDataRemoval(size);
+        loopForCostCalculation(size);
 
 
 
@@ -106,14 +113,14 @@ public class OrderConfirm_v2 extends AppCompatActivity {
         customAdapter = new CustomAdapter_OrderConfirm(OrderConfirm_v2.this, this, food_id_1, food_name_1, food_price_1, food_qty_1, food_description_1);
         recyclerview.setAdapter(customAdapter);//set adapter to my own adapter
         recyclerview.setLayoutManager(new LinearLayoutManager(OrderConfirm_v2.this));//linear layout for a vertical scroll
-
+        //what is LayoutManager? See link below for description:
+        //https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView.LayoutManager
 
         storeDataArrays();
 
 
 
-        //what is LayoutManager? See link below for description:
-        //https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView.LayoutManager
+
     }
 
 //    @Override
@@ -158,9 +165,8 @@ public class OrderConfirm_v2 extends AppCompatActivity {
 
 
     void loopForDataRemoval(int size){
-        for (int counter = 0; counter < size; counter++) {
-            System.out.println(counter);
-            String food_qty_1_counter = "";
+        for (int counter = 0; counter < size; counter++) {//I made two seperate loops here for that I need to repeat the check again for another purpose
+            //the reason I can't use it as else is purely due to the messed up order for id it creates. I will need to clean it up and then run again.
             if (food_qty_1.get(counter).equals("0")) {
                 food_qty_1.get(counter);
                 size -= 1;
@@ -174,5 +180,17 @@ public class OrderConfirm_v2 extends AppCompatActivity {
                 break;
             }
         }
+        }
+    private void loopForCostCalculation(int size) {
+        for (int counter = 0; counter < size; counter++) {
+            price_calculation = Float.parseFloat(String.valueOf(food_price_1.get(counter)));
+            qty_calculation = Integer.parseInt(String.valueOf(food_qty_1.get(counter)));
+            cost_final.add((int) (price_calculation * qty_calculation));
+            System.out.println(price_calculation);
+            System.out.println("break");
+            System.out.println(qty_calculation);
+            System.out.println("break 2");
+        }
+
     }
 }

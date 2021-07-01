@@ -88,20 +88,20 @@ class FoodDatabase_OrderConfirm extends SQLiteOpenHelper{
 //        getWritableDatabase().delete(TABLE_NAME, COLUMN_QUANTITY+"=?",new String[]{"0"});
 //    }
 
-    void updateData(String row_id, String qty){// for users, add or subtract qty of food items
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put(COLUMN_QUANTITY, qty);
-
-        long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{row_id});
-        if(result == -1){
-            Toast.makeText(context, "Failed to Update SQLite database", Toast.LENGTH_LONG).show();
-
-        }else{
-            Toast.makeText(context, "Changes saved", Toast.LENGTH_SHORT).show();
-        }
-        db.close();
-    }
+//    void updateData(String row_id, String qty){// for users, add or subtract qty of food items
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        ContentValues cv = new ContentValues();
+//        cv.put(COLUMN_QUANTITY, qty);
+//
+//        long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{row_id});
+//        if(result == -1){
+//            Toast.makeText(context, "Failed to Update SQLite database", Toast.LENGTH_LONG).show();
+//
+//        }else{
+//            Toast.makeText(context, "Changes saved", Toast.LENGTH_SHORT).show();
+//        }
+//        db.close();
+//    }
 
     void deleteOneRow(String row_id){ //to delete data in dev mode, add or subtract food items
         SQLiteDatabase db = this.getWritableDatabase();
