@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#000000">
+    android:background="@color/black">
 
 
 
@@ -21,12 +21,12 @@
 
     <TextView
         android:id="@+id/MRGS_EAT_logo"
-        android:layout_width="307dp"
-        android:layout_height="133dp"
-        android:text="mrgs eat"
-        android:textSize="60sp"
-        android:textAlignment="center"
+        android:layout_width="329dp"
+        android:layout_height="312dp"
         android:fontFamily="@font/title"
+        android:text="@string/mrgs_eat_title"
+        android:textAlignment="center"
+        android:textSize="100sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
         android:layout_height="151dp"
         android:layout_marginBottom="56dp"
         android:fontFamily="@font/txt"
-        android:text="Please make sure you are connected to the student BYOD network before signing in"
+        android:text="@string/title_reminder"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

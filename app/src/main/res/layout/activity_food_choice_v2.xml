@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:maxImageSize="50dp"
         app:srcCompat="@drawable/ic_baseline_shopping_cart_24"
-        android:contentDescription="to confirm order"/>
+        android:contentDescription="@string/to_confirm_order"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/to_addfood"
@@ -41,7 +41,7 @@
         android:layout_marginBottom="44dp"
         android:clickable="true"
         android:focusable="true"
-        android:contentDescription="For adding food items"
+        android:contentDescription="@string/to_add_items"
         android:src="@drawable/ic_baseline_android_24"
         app:fabCustomSize="80dp"
         app:layout_constraintBottom_toBottomOf="parent"

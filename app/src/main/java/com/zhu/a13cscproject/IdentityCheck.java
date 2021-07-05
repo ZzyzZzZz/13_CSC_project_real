@@ -1,6 +1,5 @@
 package com.zhu.a13cscproject;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -17,10 +16,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -53,23 +48,17 @@ public class IdentityCheck extends AppCompatActivity {
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        imageView = findViewById(R.id.imageView); //image view not created
+        imageView = findViewById(R.id.google_pfp); //image view not created
         name = findViewById(R.id.textName); //name field not created
         email = findViewById(R.id.textemail); //test email not created
         signOut = findViewById(R.id.sign_out_button);
-        signOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (v.getId() == R.id.sign_out_button) {
-                    mGoogleSignInClient.signOut()
-                            .addOnCompleteListener(IdentityCheck.this, new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull @NotNull Task<Void> task) {
-                                    Toast.makeText(IdentityCheck.this, "signed out successfully", Toast.LENGTH_LONG).show();
-                                    finish();
-                                }
-                            });
-                }
+        signOut.setOnClickListener(v -> {//if signout clicked
+            if (v.getId() == R.id.sign_out_button) {
+                mGoogleSignInClient.signOut()
+                        .addOnCompleteListener(IdentityCheck.this, task -> {
+                            Toast.makeText(IdentityCheck.this, "signed out successfully", Toast.LENGTH_LONG).show();
+                            finish();
+                        });
             }
         });
 
@@ -78,17 +67,14 @@ public class IdentityCheck extends AppCompatActivity {
 
         dev_mode_fbtn = findViewById(R.id.dev_mode_activate_fbtn);//dev_mode floating button
         dev_mode_fbtn.setVisibility(GONE);// just to get rid of it when distributing the app.
-        dev_mode_fbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (dev_mode == 0){
-                    gc.setDev_mode(1);
-                    Toast.makeText(IdentityCheck.this, "dev mode activated", Toast.LENGTH_SHORT).show();
-                }
-                if (dev_mode == 1){
-                    gc.setDev_mode(0);
-                    Toast.makeText(IdentityCheck.this, "dev mode deactivated", Toast.LENGTH_SHORT).show();
-                }
+        dev_mode_fbtn.setOnClickListener(v -> {
+            if (dev_mode == 0){
+                gc.setDev_mode(1);
+                Toast.makeText(IdentityCheck.this, "dev mode activated", Toast.LENGTH_SHORT).show();
+            }
+            if (dev_mode == 1){
+                gc.setDev_mode(0);
+                Toast.makeText(IdentityCheck.this, "dev mode deactivated", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -116,36 +102,10 @@ public class IdentityCheck extends AppCompatActivity {
 
 
     private void cont_FoodChoice() { // method to open Food Choice
-        cont_FoodChoice = findViewById(R.id.cont_FoodChoice); // continue button to FoodChoice activity
-        cont_FoodChoice.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) { //if button clicked go launch the activity
-               Intent intent = new Intent(IdentityCheck.this, FoodChoice_v2.class); //create intent of FoodChoice and start it
-               startActivity(intent);
-           }
+        cont_FoodChoice = findViewById(R.id.cont_FoodChoice); // continue button to FoodChoice_v2 activity
+        cont_FoodChoice.setOnClickListener(v -> { //if button clicked go launch the activity
+            Intent intent = new Intent(IdentityCheck.this, FoodChoice_v2.class); //create intent of FoodChoice_v2 and start it
+            startActivity(intent);
         });
     }
-};
-    // todo: how to connect sellers and buyers, and how to communicate
-// here is the idea, I need to upload to firebase a set of food menu once, then
-//the buyers and sellers can just communicate with simple digits, for example, if I have
-//a dictionary (python) in firebase, I can just refer the key as food name and value as how many,
-//price and image are local data since firebase limits amount of uploads and downloads per day.
-//so more like {1:1,2:1,3:0} and such, but now I need a way so I can connect two people together,
-//buyer and seller, where they can have a private room of their own for data to transfer without
-// getting mixed up. So matching people together is also a challenge, I am thinking of creating
-// a list full of sellers and buyers can just connect as a child class under firebase to give info
-// to only that seller.
-//.push() under firebase with unique key might come in handy
-
-//suggestion to Miss: next year tell students what are activities, what is override, what is
-// listeners and toast messages, logcat, then they should be fine no problem. The main problem with
-//this year is the information overload, it is not that important to understand everything from
-//scratch, I learn more when I started to use them, create small projects or watching tutorials
-//on how to make a specific thing filters out the other unrelated parts, which will make the
-//simplicity of android studio stand out.
-//the most complicated part this year is the fast progression, if we spend only one day on something
-//specific such as how location manager works then we will have no problem, or maybe just focusing on
-//keeping the progress fast but explain everything once, for people who got it let them move on
-// and those who didn't can come sit around a table once a week to catch up. This way is the most
-// efficient, as for people who are ahead they just ask questions.
+}

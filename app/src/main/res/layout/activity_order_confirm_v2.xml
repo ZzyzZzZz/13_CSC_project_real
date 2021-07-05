@@ -26,7 +26,7 @@
         android:layout_marginBottom="40dp"
         android:background="@drawable/rounded_buttons"
         android:fontFamily="@font/txt"
-        android:text="Purchase"
+        android:text="@string/purchase"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -38,7 +38,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginBottom="88dp"
         android:fontFamily="@font/txt"
-        android:text="Total Cost"
+        android:text="@string/total_cost"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -62,7 +62,7 @@
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/txt"
         android:gravity="center"
-        android:text="$"
+        android:text="@string/dollar_sign"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

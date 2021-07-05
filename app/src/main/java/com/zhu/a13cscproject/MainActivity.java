@@ -1,19 +1,13 @@
 package com.zhu.a13cscproject;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
+
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -22,7 +16,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseUser;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     SignInButton signin; //signin button from google
     int RC_SIGN_IN = 0; //declear variable
     GoogleSignInClient mGoogleSignInClient; //Declear member variable, not to share with other activities.
-    boolean connected = false;
     TextView logo;
 
 
@@ -40,21 +33,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
-//        View backgroundimage = findViewById(R.id.background);
-//        Drawable background = backgroundimage.getBackground();
-//        background.setAlpha(80);
-
         logo = findViewById(R.id.MRGS_EAT_logo);//nothing
 
         signin = findViewById(R.id.sign_in_button); // Onclick listener for google login
-        signin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (view.getId() == R.id.sign_in_button) {
-                    signIn();
-                    // ...
-                }
+        signin.setOnClickListener(view -> {
+            if (view.getId() == R.id.sign_in_button) {
+                signIn();
+                // ...
             }
         });
 

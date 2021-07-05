@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -40,38 +39,32 @@ public class UpdateActivity extends AppCompatActivity {
         dev_mode = gc.getDev_mode();
 
         add_input = findViewById(R.id.add_btn2); //the add qty button, in this case it can be used to change the qty of that particular food. Or you can enter it, up to you.
-        add_input.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                qty_int = Integer.parseInt(qty);// first change qty of selected food to int
+        add_input.setOnClickListener(v -> {
+            qty_int = Integer.parseInt(qty);// first change qty of selected food to int
 
-                if (qty_int < 10) {// then do calculations
-                    qty_int += 1;
-                    qty = Integer.toString(qty_int);// new value to string
-                    food_qty.setText(qty); // then set the original qty variable to the new number.
-                }else{
+            if (qty_int < 10) {// then do calculations
+                qty_int += 1;
+                qty = Integer.toString(qty_int);// new value to string
+                food_qty.setText(qty); // then set the original qty variable to the new number.
+            }else{
 //                    Toast.makeText(UpdateActivity.this, "leave some " + name + "for others!", Toast.LENGTH_SHORT).show();
-                    tooManyItem();
-                }
-
+                tooManyItem();
             }
+
         });
         subtract_input = findViewById(R.id.subtract_btn2);//the subtract qty button, just like add button.
-        subtract_input.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                qty_int = Integer.parseInt(qty);
+        subtract_input.setOnClickListener(v -> {
+            qty_int = Integer.parseInt(qty);
 
-                if (qty_int >0) {
-                    qty_int -= 1;
-                    qty = Integer.toString(qty_int);
-                    food_qty.setText(qty);
-                }else{
+            if (qty_int >0) {
+                qty_int -= 1;
+                qty = Integer.toString(qty_int);
+                food_qty.setText(qty);
+            }else{
 //                    Toast.makeText(UpdateActivity.this, "You can't have negative amount of " + name , Toast.LENGTH_SHORT).show();
-                    tooFewItem();
-                }
-
+                tooFewItem();
             }
+
         });
 
 
@@ -86,11 +79,8 @@ public class UpdateActivity extends AppCompatActivity {
         }else{
             delete_fbtn.hide();//other wise hide
         }
-        delete_fbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { // to delete items in SQLite as a whole
-                confirmDeleteDialog();
-            }
+        delete_fbtn.setOnClickListener(v -> { // to delete items in SQLite as a whole
+            confirmDeleteDialog();
         });
 
 
@@ -103,20 +93,15 @@ public class UpdateActivity extends AppCompatActivity {
 
 
         update_btn = findViewById(R.id.update_sql_btn2);
-        update_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FoodDatabase foodDB = new FoodDatabase(UpdateActivity.this);
-                //update data. Data should be set before update.
-                foodDB.updateData(id, qty);
-                //so you don't click twice by accident, also, to update the recyclerview as well, every time FoodChoice_v2 was called it goes through the load process of recyclerview, which includes the new data
-                // not the most efficient way, but let's let this version slide.
+        update_btn.setOnClickListener(v -> {
+            FoodDatabase foodDB = new FoodDatabase(UpdateActivity.this);
+            //update data. Data should be set before update.
+            foodDB.updateData(id, qty);
+            //so you don't click twice by accident, also, to update the recyclerview as well, every time FoodChoice_v2 was called it goes through the load process of recyclerview, which includes the new data
+            // not the most efficient way, but let's let this version slide.
 
-                foodDB.close();
-                finish();
-//                Intent intent = new Intent(UpdateActivity.this, FoodChoice_v2.class);
-//                startActivity(intent);
-            }
+            foodDB.close();
+            finish();
         });
 
 
@@ -148,7 +133,7 @@ public class UpdateActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Delete " + name + "?");
         builder.setMessage("Delete " + name + " permanently?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {//I am leaving this for ease of use
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 FoodDatabase db = new FoodDatabase(UpdateActivity.this); // FoodDatabase object
@@ -156,7 +141,7 @@ public class UpdateActivity extends AppCompatActivity {
                 finish();
             }
         });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {//leaving this for ease of use
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //nothing since we don't want to do anything.
@@ -199,21 +184,3 @@ public class UpdateActivity extends AppCompatActivity {
         Toast.makeText(this,"Changes Not Saved", Toast.LENGTH_SHORT).show();
     }
 }
-
-//    @Override
-//    public void onBackPressed() {
-//
-//
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setTitle("Changes Not Saved");
-//        builder.setMessage("please go back through the update button");
-//        builder.setNegativeButton("No, stay", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                //nothing
-//            }
-//        });
-//        super.onBackPressed();
-//        finish();
-//    }
-//}

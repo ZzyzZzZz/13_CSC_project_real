@@ -5,7 +5,7 @@
     android:id="@+id/food_select"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="@color/black"
     tools:context=".IdentityCheck">
 
 
@@ -15,19 +15,18 @@
         android:layout_height="52dp"
         android:layout_marginBottom="92dp"
         android:background="@drawable/rounded_buttons_red"
-        android:text="Change User"
-
+        android:text="@string/change_user_txt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.212"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/google_pfp"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="44dp"
-        android:contentDescription="imageview"
+        android:contentDescription="@string/google_pfp_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintCircleRadius="50dp"
         app:layout_constraintHorizontal_bias="0.498"
@@ -37,27 +36,29 @@
 
     <TextView
         android:id="@+id/textName"
-        android:layout_width="242dp"
-        android:layout_height="67dp"
+        android:layout_width="291dp"
+        android:layout_height="129dp"
         android:layout_marginTop="52dp"
         android:fontFamily="@font/txt"
-        android:text="Name"
+        android:text="@string/name_txt"
+        android:gravity="center"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/google_pfp" />
 
     <TextView
         android:id="@+id/textemail"
         android:layout_width="302dp"
         android:layout_height="76dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="@font/txt"
-        android:text="Email"
-        android:textSize="15sp"
         android:gravity="center"
+        android:text="@string/email_txt"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textName" />
 
@@ -66,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="96dp"
-        android:text="Yes, it's me"
+        android:text="@string/user_confirm"
         android:background="@drawable/rounded_buttons"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -78,7 +79,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="196dp"
-        android:text="revoke signin"
+        android:text="@string/dev_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.944"

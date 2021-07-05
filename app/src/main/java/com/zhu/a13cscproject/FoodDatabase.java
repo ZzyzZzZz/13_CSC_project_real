@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 
 class FoodDatabase extends SQLiteOpenHelper{
 
-    private Context context;
+    private final Context context;
     private static final String DATABASE_NAME = "FoodListLibrary.db";
     private static final int DATABASE_VERSION = 1;
 

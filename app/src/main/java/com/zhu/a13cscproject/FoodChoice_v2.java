@@ -38,12 +38,10 @@ public class FoodChoice_v2 extends AppCompatActivity {
 
         recyclerview = findViewById(R.id.food_recyclerview);
         to_cart_fbtn = findViewById(R.id.to_order_finished);
-        to_cart_fbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FoodChoice_v2.this, OrderConfirm_v2.class);
-                startActivity(intent);
-            }
+        to_cart_fbtn.setOnClickListener(v -> {
+
+            Intent intent = new Intent(FoodChoice_v2.this, OrderConfirm_v2.class);
+            startActivity(intent);
         });
         to_addfood_fbtn = findViewById(R.id.to_addfood);//this option will only show up if dev_mode is enabled.
         if (dev_mode == 1){//this hide function don't work perfectly and I am fine with it, I am the only person needed to know how to use it...
@@ -52,13 +50,10 @@ public class FoodChoice_v2 extends AppCompatActivity {
             to_addfood_fbtn.hide();
         }
 
-        to_addfood_fbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FoodChoice_v2.this, FoodSpecifications.class);
-                startActivity(intent);
+        to_addfood_fbtn.setOnClickListener(v -> {
+            Intent intent = new Intent(FoodChoice_v2.this, FoodSpecifications.class);
+            startActivity(intent);
 
-            }
         });
 
 

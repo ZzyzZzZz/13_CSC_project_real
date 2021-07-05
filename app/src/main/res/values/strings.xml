@@ -1,5 +1,35 @@
 <resources>
     <string name="app_name">MRGS EAT</string>
     <string name="TODO">13 CSC project</string>
-    <string name="google_sign_in"></string>
+    <string name="mrgs_eat_title">MRGS EAT!</string>
+    <string name="title_reminder">Please make sure you are connected to the student BYOD network before using this app</string>
+    <string name="change_user_txt">Change User</string>
+    <string name="google_pfp_image">google_pfp</string>
+    <string name="name_txt">Name</string>
+    <string name="email_txt">Email</string>
+    <string name="user_confirm">Yes, it\'s me</string>
+    <string name="dev_btn">Dev Mode</string>
+    <string name="food_name_txt">food name</string>
+    <string name="food_price_txt">food price</string>
+    <string name="qty_txt">quantity</string>
+    <string name="description_txt">description</string>
+    <string name="to_confirm_order">to confirm order</string>
+    <string name="to_add_items">For adding food items</string>
+    <string name="add_order">add order</string>
+    <string name="subtract_btn">only way to decrease item amount</string>
+    <string name="add_btn">only way to increase item amount</string>
+    <string name="nothing">nothing</string>
+    <string name="no_value">0</string>
+    <string name="food_qty_txt">0</string>
+    <string name="confirm_change_btn">Confirm Order Change</string>
+    <string name="delete_btn">delete item</string>
+    <string name="dollar_sign">$</string>
+    <string name="thank_user_for_ordering_txt">Thank You For Ordering</string>
+    <string name="purchase">Purchase</string>
+    <string name="one">1</string>
+    <string name="food_description">food description</string>
+    <string name="total_cost">Total Cost</string>
+
+
+
 </resources>

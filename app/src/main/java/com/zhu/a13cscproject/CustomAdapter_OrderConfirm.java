@@ -2,7 +2,7 @@ package com.zhu.a13cscproject;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +18,11 @@ import java.util.ArrayList;
 
 public class CustomAdapter_OrderConfirm extends RecyclerView.Adapter<CustomAdapter_OrderConfirm.MyViewHolder>{// custom adapter to display data
 
-    private Context context;
+    private final Context context;
     private ArrayList food_id, food_name, food_price, food_qty, food_description;
     Activity activity;
 
-    //when this class (activity) is initialized in FoodChoice, pass all ArrayLists created here to that class. Then set global variables so we can access them in other classes.
+    //when this class (activity) is initialized in OrderConfirm_v2, pass all ArrayLists created here to that class. Then set global variables so we can access them in other classes.
     CustomAdapter_OrderConfirm(Activity activity,
                                Context context,
                                ArrayList food_id,

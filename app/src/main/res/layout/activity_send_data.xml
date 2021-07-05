@@ -11,7 +11,7 @@
         android:id="@+id/textView"
         android:layout_width="405dp"
         android:layout_height="82dp"
-        android:text="Thank You For Ordering"
+        android:text="@string/thank_user_for_ordering_txt"
         android:fontFamily="@font/txt"
         android:textSize="30sp"
         android:textAlignment="center"
