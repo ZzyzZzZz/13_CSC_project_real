@@ -11,11 +11,11 @@ import androidx.annotation.Nullable;
 
 class FoodDatabase extends SQLiteOpenHelper{
 
-    private final Context context;
+    private final Context context;//declearing variables
     private static final String DATABASE_NAME = "FoodListLibrary.db";
     private static final int DATABASE_VERSION = 1;
 
-    private static final String TABLE_NAME = "FoodList";
+    private static final String TABLE_NAME = "FoodList";//field names. Just for me though.
     private static final String COLUMN_ID = "_id";
     private static final String COLUMN_NAME = "food_name";
     private static final String COLUMN_PRICE = "food_price";

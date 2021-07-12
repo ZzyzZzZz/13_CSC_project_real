@@ -9,6 +9,10 @@ import androidx.annotation.Nullable;
 
 class FoodDatabase_OrderConfirm extends SQLiteOpenHelper{
 
+    //@@
+    //This is very similar to CustomAdapter, comments there.
+    //@@
+
     private static final String DATABASE_NAME = "FoodChosen.db";
     private static final int DATABASE_VERSION = 1;
 

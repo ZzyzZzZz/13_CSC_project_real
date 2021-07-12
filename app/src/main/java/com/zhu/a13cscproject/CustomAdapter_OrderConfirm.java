@@ -22,6 +22,11 @@ public class CustomAdapter_OrderConfirm extends RecyclerView.Adapter<CustomAdapt
     private ArrayList food_id, food_name, food_price, food_qty, food_description;
     Activity activity;
 
+    //@@
+    //This is very similar to CustomAdapter, comments there.
+    //@@
+
+
     //when this class (activity) is initialized in OrderConfirm_v2, pass all ArrayLists created here to that class. Then set global variables so we can access them in other classes.
     CustomAdapter_OrderConfirm(Activity activity,
                                Context context,

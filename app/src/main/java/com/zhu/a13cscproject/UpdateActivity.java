@@ -151,7 +151,7 @@ public class UpdateActivity extends AppCompatActivity {
     }
 
     void tooManyItem(){//maximum qty of food overflow
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);//building alert message to inform user
         builder.setTitle("More than 10 " + name + "!");
         builder.setMessage("10 " + name + "! You got some impressive skills there to finish all these. Unfortunately you got to leave some for others.");
         builder.setPositiveButton("Fine, I'll leave some for others", new DialogInterface.OnClickListener() {//button clicked, back to ordering food.
@@ -164,7 +164,7 @@ public class UpdateActivity extends AppCompatActivity {
     }
 
     void tooFewItem(){//minimum qty of food prevention.
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);//building alert message to inform user
         builder.setTitle("You ain't selling no " + name + " to me");
         builder.setMessage("How do I know? Well, that's a story for another time.");
         builder.setPositiveButton("Yeah, right.", new DialogInterface.OnClickListener() {//button clicked, back to ordering food.

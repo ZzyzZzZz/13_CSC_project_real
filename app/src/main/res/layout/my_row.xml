@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -28,11 +29,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/txt"
-                android:visibility="gone"
                 android:text="@string/one"
                 android:textColor="@color/white"
                 android:textSize="40sp"
                 android:textStyle="bold"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -57,7 +58,7 @@
                 android:layout_height="30dp"
                 android:layout_marginEnd="56dp"
                 android:fontFamily="@font/txt"
-                android:gravity="center"
+                android:gravity="start"
                 android:text="@string/food_price_txt"
                 android:textColor="@color/white"
                 android:textSize="25sp"
@@ -86,8 +87,8 @@
                 android:id="@+id/food_description_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/food_description"
                 android:fontFamily="@font/txt"
+                android:text="@string/food_description"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -95,6 +96,22 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.694" />
+
+            <TextView
+                android:id="@+id/dollar_sign"
+                android:layout_width="27dp"
+                android:layout_height="39dp"
+                android:layout_marginEnd="104dp"
+                android:fontFamily="@font/txt"
+                android:gravity="center"
+                android:text="@string/dollar_sign"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.53" />
 
             <!--sp is just like dp but for fonts. Scalable pixels-->
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class OrderConfirm_v2 extends AppCompatActivity {
 
-    RecyclerView recyclerview;
+    RecyclerView recyclerview;//declear variables
     Button to_senddata_btn;
     Float price_calculation;
     Float final_cost;
@@ -30,7 +30,7 @@ public class OrderConfirm_v2 extends AppCompatActivity {
 
     FoodDatabase_OrderConfirm foodDB; //get my database
     FoodDatabase foodDB_first;
-    ArrayList<String> food_id, food_name, food_price, food_qty, food_description;
+    ArrayList<String> food_id, food_name, food_price, food_qty, food_description;//arraylist needed for database transition
     ArrayList<String> food_id_1, food_name_1, food_price_1, food_qty_1, food_description_1;
     CustomAdapter_OrderConfirm customAdapter;
 
@@ -45,7 +45,7 @@ public class OrderConfirm_v2 extends AppCompatActivity {
 
 
 
-        recyclerview = findViewById(R.id.food_recyclerview);
+        recyclerview = findViewById(R.id.food_recyclerview);//find recyclerview
 
 
         total_txt = findViewById(R.id.total_txt);//uhh, just leave it here. Nothing is done.
@@ -58,7 +58,7 @@ public class OrderConfirm_v2 extends AppCompatActivity {
         food_qty = new ArrayList<>();
         food_description = new ArrayList<>();
 
-        storeDataArrays_first();
+        storeDataArrays_first();//it is actually reading data but whatever the naming
 
 
 
@@ -70,26 +70,26 @@ public class OrderConfirm_v2 extends AppCompatActivity {
         food_description_1 = new ArrayList<>();
 
 
-        food_id_1 = food_id;
+        food_id_1 = food_id;//override data from first to second database
         food_name_1 = food_name;
         food_price_1 = food_price;
         food_qty_1 = food_qty;
         food_description_1 = food_description;
 
-        int size = food_qty.size();
-        loopForDataRemoval(size);
-        int size_1 = food_qty_1.size();
-        loopForCostCalculation(size_1, final_cost);
+        int size = food_qty.size();//size of the database modification
+        loopForDataRemoval(size);//gets rid of all the data without a qty of 1 or larger, means user didn't select
+        int size_1 = food_qty_1.size();//size post modification
+        loopForCostCalculation(size_1, final_cost);//calculate price need accurate size
 
 
 
-        customAdapter = new CustomAdapter_OrderConfirm(OrderConfirm_v2.this, this, food_id_1, food_name_1, food_price_1, food_qty_1, food_description_1);
+        customAdapter = new CustomAdapter_OrderConfirm(OrderConfirm_v2.this, this, food_id_1, food_name_1, food_price_1, food_qty_1, food_description_1);//use my adapter
         recyclerview.setAdapter(customAdapter);//set adapter to my own adapter
         recyclerview.setLayoutManager(new LinearLayoutManager(OrderConfirm_v2.this));//linear layout for a vertical scroll
         //what is LayoutManager? See link below for description:
         //https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView.LayoutManager
 
-        storeDataArrays();
+        storeDataArrays();//read second database
 
 
         to_senddata_btn = findViewById(R.id.to_order_finished);

@@ -10,6 +10,6 @@ public class GlobalClass extends Application {
     }
 
     public void setDev_mode(Integer dev_mode) {
-        this.dev_mode = dev_mode;
+        this.dev_mode = dev_mode;//dev_mode global integer share among all classes.
     }
 }

@@ -28,16 +28,16 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {//on activity creation
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);//layout file
 
 
-        logo = findViewById(R.id.MRGS_EAT_logo);//nothing
+        logo = findViewById(R.id.MRGS_EAT_logo);//nothing done yet
 
         signin = findViewById(R.id.sign_in_button); // Onclick listener for google login
         signin.setOnClickListener(view -> {
-            if (view.getId() == R.id.sign_in_button) {
+            if (view.getId() == R.id.sign_in_button) {//complicate
                 signIn();
                 // ...
             }

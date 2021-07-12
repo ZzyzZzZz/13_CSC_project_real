@@ -31,7 +31,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                   ArrayList food_qty,
                   ArrayList food_description
     ){
-        this.activity = activity;
+        this.activity = activity;//add into arraylist
         this.context = context;
         this.food_id = food_id;
         this.food_name = food_name;
@@ -48,7 +48,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @NotNull
     @Override
 
-    public MyViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {//inflates the view here.
         LayoutInflater inflater = LayoutInflater.from(context);//https://stackoverflow.com/questions/4576330/what-does-it-mean-to-inflate-a-view-from-an-xml-file
         View view = inflater.inflate(R.layout.my_row, parent, false);
         return new MyViewHolder(view); //return the view
@@ -64,7 +64,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.mainLayout.setOnClickListener(new View.OnClickListener() { //when items in recyclerview was clicked, we are going to transfer to our activity where
             //all the variables saved in SQL for that particular id will be carried over for modification.
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {//to put these variables in another class. FoodSpecifications.
                 Intent intent = new Intent(context, UpdateActivity.class);
                 intent.putExtra("id", String.valueOf(food_id.get(position))); //start intent with this variable carried over. We need to fetch the data from
                 //this one specifically so we can edit the data in it through request to SQLite.
@@ -78,7 +78,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     }
 
     @Override
-    public int getItemCount() {
+    public int getItemCount() {//get amount of items in the db.
         return food_id.size();// count how many items are in the RecyclerView dataset.
     }
 
@@ -90,7 +90,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
         public MyViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
-            food_id_txt = itemView.findViewById(R.id.food_id_txt);
+            food_id_txt = itemView.findViewById(R.id.food_id_txt);//find all of the views from recyclerview.
             food_name_txt = itemView.findViewById(R.id.food_name_txt);
             food_price_txt = itemView.findViewById(R.id.food_price_txt);
             food_qty_txt = itemView.findViewById(R.id.food_qty_txt);

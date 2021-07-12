@@ -27,6 +27,7 @@
         android:clickable="true"
         android:focusable="true"
         app:fabCustomSize="80dp"
+        android:alpha="0.7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:maxImageSize="50dp"

@@ -20,10 +20,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import java.util.Objects;
 
 import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 public class IdentityCheck extends AppCompatActivity {
 
-    ImageView imageView;
+    ImageView imageView;//declearing variables for different functions.
     TextView name, email;
     Button signOut, cont_FoodChoice, dev_mode_fbtn;
     GlobalClass gc;
@@ -56,23 +57,23 @@ public class IdentityCheck extends AppCompatActivity {
             if (v.getId() == R.id.sign_out_button) {
                 mGoogleSignInClient.signOut()
                         .addOnCompleteListener(IdentityCheck.this, task -> {
-                            Toast.makeText(IdentityCheck.this, "signed out successfully", Toast.LENGTH_LONG).show();
+                            Toast.makeText(IdentityCheck.this, "signed out successfully", Toast.LENGTH_LONG).show();//notify user signout successful
                             finish();
                         });
             }
         });
 
 
-        cont_FoodChoice();
+        cont_FoodChoice();//to food choice
 
         dev_mode_fbtn = findViewById(R.id.dev_mode_activate_fbtn);//dev_mode floating button
         dev_mode_fbtn.setVisibility(GONE);// just to get rid of it when distributing the app.
         dev_mode_fbtn.setOnClickListener(v -> {
-            if (dev_mode == 0){
+            if (dev_mode == 0){//activate dev_mode
                 gc.setDev_mode(1);
                 Toast.makeText(IdentityCheck.this, "dev mode activated", Toast.LENGTH_SHORT).show();
             }
-            if (dev_mode == 1){
+            if (dev_mode == 1){//deactivate dev_mode
                 gc.setDev_mode(0);
                 Toast.makeText(IdentityCheck.this, "dev mode deactivated", Toast.LENGTH_SHORT).show();
             }
@@ -81,7 +82,7 @@ public class IdentityCheck extends AppCompatActivity {
 
 
 
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);//last signed in account if so login with it.
         if (account != null) {
             String personName = account.getDisplayName();
             String personEmail = account.getEmail();
