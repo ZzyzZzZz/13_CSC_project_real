@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,13 +19,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import java.util.Objects;
 
 import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
 
 public class IdentityCheck extends AppCompatActivity {
 
-    ImageView imageView;//declearing variables for different functions.
+    ImageView imageView;//declaring variables for different functions.
     TextView name, email;
-    Button signOut, cont_FoodChoice, dev_mode_fbtn;
+    Button signOut, cont_FoodChoice, dev_mode_f_btn;
     GlobalClass gc;
     Integer dev_mode;
 
@@ -51,13 +49,13 @@ public class IdentityCheck extends AppCompatActivity {
 
         imageView = findViewById(R.id.google_pfp); //image view not created
         name = findViewById(R.id.textName); //name field not created
-        email = findViewById(R.id.textemail); //test email not created
+        email = findViewById(R.id.textEmail); //test email not created
         signOut = findViewById(R.id.sign_out_button);
-        signOut.setOnClickListener(v -> {//if signout clicked
+        signOut.setOnClickListener(v -> {//if signOut clicked
             if (v.getId() == R.id.sign_out_button) {
                 mGoogleSignInClient.signOut()
                         .addOnCompleteListener(IdentityCheck.this, task -> {
-                            Toast.makeText(IdentityCheck.this, "signed out successfully", Toast.LENGTH_LONG).show();//notify user signout successful
+                            Toast.makeText(IdentityCheck.this, "signed out successfully", Toast.LENGTH_LONG).show();//notify user signOut successful
                             finish();
                         });
             }
@@ -66,9 +64,9 @@ public class IdentityCheck extends AppCompatActivity {
 
         cont_FoodChoice();//to food choice
 
-        dev_mode_fbtn = findViewById(R.id.dev_mode_activate_fbtn);//dev_mode floating button
-        dev_mode_fbtn.setVisibility(GONE);// just to get rid of it when distributing the app.
-        dev_mode_fbtn.setOnClickListener(v -> {
+        dev_mode_f_btn = findViewById(R.id.dev_mode_activate_f_btn);//dev_mode floating button
+        dev_mode_f_btn.setVisibility(GONE);// just to get rid of it when distributing the app.
+        dev_mode_f_btn.setOnClickListener(v -> {
             if (dev_mode == 0){//activate dev_mode
                 gc.setDev_mode(1);
                 Toast.makeText(IdentityCheck.this, "dev mode activated", Toast.LENGTH_SHORT).show();

@@ -12,7 +12,7 @@ import android.widget.ImageButton;
 
 public class FoodSpecifications extends AppCompatActivity {
 
-    EditText food_qty, food_name, food_price, food_description;//declearing variables
+    EditText food_qty, food_name, food_price, food_description;//declaring variables
     ImageButton add_input, subtract_input;
     Button add_to_sql_btn;
 
@@ -28,14 +28,16 @@ public class FoodSpecifications extends AppCompatActivity {
         food_price = findViewById(R.id.food_price);
         food_description = findViewById(R.id.food_description);
         food_qty = findViewById(R.id.food_qty);
+
         add_input = findViewById(R.id.add_btn);
-        subtract_input = findViewById(R.id.subtract_btn);
+        subtract_input = findViewById(R.id.subtract_btn);//these buttons will not have anything else than onclick function, therefore unused.
+
         add_to_sql_btn = findViewById(R.id.update_sql_btn);
         add_to_sql_btn.setOnClickListener(v -> {//if button pressed add recorded information to sqlite database
             FoodDatabase foodDB = new FoodDatabase(FoodSpecifications.this);//calling add_food function to add food to database
 
             try{
-                foodDB.addfood(
+                foodDB.addFood(
                         food_name.getText().toString().trim(),//collect all information entered by intended personal.
                         Float.parseFloat(food_price.getText().toString().trim()),
                         food_description.getText().toString().trim(),
@@ -54,11 +56,9 @@ public class FoodSpecifications extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Value Error");
         builder.setMessage("please check format, food name and description should be texts and price shouldn't include anything but numbers, especially dollar signs. Accept decimals.");
-        builder.setPositiveButton("Let me fix it", new DialogInterface.OnClickListener() {//leave it like this for ease of understanding.
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //nothing, puts user back to fix their mistake.
-            }
+        //leave it like this for ease of understanding.
+        builder.setPositiveButton("Let me fix it", (dialog, which) -> {
+            //nothing, puts user back to fix their mistake.
         });
         builder.create().show();
     }

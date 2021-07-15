@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 
 class FoodDatabase extends SQLiteOpenHelper{
 
-    private final Context context;//declearing variables
+    private final Context context;//declaring variables
     private static final String DATABASE_NAME = "FoodListLibrary.db";
     private static final int DATABASE_VERSION = 1;
 
@@ -45,11 +45,11 @@ class FoodDatabase extends SQLiteOpenHelper{
         onCreate(db);
     }
 
-    void addfood(String name, float price, String description, int quantity){// todo HERE is how to add items, but since I didn't set items as edit text maybe I need a seperate activity just for developer edit.
+    void addFood(String name, float price, String description, int quantity){//HERE is how to add items
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_NAME, name);
+        cv.put(COLUMN_NAME, name);//put values into database in the .insert below.
         cv.put(COLUMN_PRICE, price);
         cv.put(COLUMN_DESCRIPTION, description);
         cv.put(COLUMN_QUANTITY, quantity);

@@ -3,7 +3,6 @@ package com.zhu.a13cscproject;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -18,8 +17,8 @@ import java.util.ArrayList;
 
 public class FoodChoice_v2 extends AppCompatActivity {
 
-    RecyclerView recyclerview;//declearing variables
-    FloatingActionButton to_cart_fbtn, to_addfood_fbtn;
+    RecyclerView recyclerview;//declaring variables
+    FloatingActionButton to_cart_f_btn, to_addFood_f_btn;
     GlobalClass gc; //for dev mode
     Integer dev_mode;// for dev mode
 
@@ -37,22 +36,22 @@ public class FoodChoice_v2 extends AppCompatActivity {
         dev_mode = gc.getDev_mode();
 
         recyclerview = findViewById(R.id.food_recyclerview);//my recyclerview
-        to_cart_fbtn = findViewById(R.id.to_order_finished);
-        to_cart_fbtn.setOnClickListener(v -> {//if clicked.
+        to_cart_f_btn = findViewById(R.id.to_order_finished);
+        to_cart_f_btn.setOnClickListener(v -> {//if clicked.
 
             Intent intent = new Intent(FoodChoice_v2.this, OrderConfirm_v2.class);
             startActivity(intent);
         });
 
 
-        to_addfood_fbtn = findViewById(R.id.to_addfood);//this option will only show up if dev_mode is enabled.
+        to_addFood_f_btn = findViewById(R.id.to_addFood);//this option will only show up if dev_mode is enabled.
         if (dev_mode == 1){//this hide function don't work perfectly and I am fine with it, I am the only person needed to know how to use it...
-            to_addfood_fbtn.show();//dev_mode
+            to_addFood_f_btn.show();//dev_mode
         }else{
-            to_addfood_fbtn.hide();
+            to_addFood_f_btn.hide();
         }
 
-        to_addfood_fbtn.setOnClickListener(v -> {//add food qty.
+        to_addFood_f_btn.setOnClickListener(v -> {//add food qty.
             Intent intent = new Intent(FoodChoice_v2.this, FoodSpecifications.class);
             startActivity(intent);
 
@@ -86,7 +85,7 @@ public class FoodChoice_v2 extends AppCompatActivity {
     void storeDataArrays(){// get the data from SQL and add them to the predefined variables that holds these values.
         Cursor cursor = foodDB.readAllData();
         if(cursor.getCount() == 0) {//if getCount() == 0 then there are no data
-            Toast.makeText(this, "No Food data, please load SQLdataset", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No Food data, please load SQL dataset", Toast.LENGTH_SHORT).show();
         }else{
             while (cursor.moveToNext()){
                 food_id.add(cursor.getString(0)); //column count, basically arrange where they are in SQLite.

@@ -1,6 +1,6 @@
 package com.zhu.a13cscproject;
 
-import android.app.Activity;
+
 import android.content.Context;
 
 import android.view.LayoutInflater;
@@ -19,8 +19,7 @@ import java.util.ArrayList;
 public class CustomAdapter_OrderConfirm extends RecyclerView.Adapter<CustomAdapter_OrderConfirm.MyViewHolder>{// custom adapter to display data
 
     private final Context context;
-    private ArrayList food_id, food_name, food_price, food_qty, food_description;
-    Activity activity;
+    private ArrayList food_id, food_name, food_price, food_qty, food_description;//not fixing these errors since they works logically since I already have check information somewhere else.
 
     //@@
     //This is very similar to CustomAdapter, comments there.
@@ -28,15 +27,14 @@ public class CustomAdapter_OrderConfirm extends RecyclerView.Adapter<CustomAdapt
 
 
     //when this class (activity) is initialized in OrderConfirm_v2, pass all ArrayLists created here to that class. Then set global variables so we can access them in other classes.
-    CustomAdapter_OrderConfirm(Activity activity,
-                               Context context,
-                               ArrayList food_id,
-                               ArrayList food_name,
-                               ArrayList food_price,
-                               ArrayList food_qty,
-                               ArrayList food_description
+    CustomAdapter_OrderConfirm(
+            OrderConfirm_v2 orderConfirm_v2, Context context,
+            ArrayList food_id,
+            ArrayList food_name,
+            ArrayList food_price,
+            ArrayList food_qty,
+            ArrayList food_description
     ){
-        this.activity = activity;
         this.context = context;
         this.food_id = food_id;
         this.food_name = food_name;
@@ -66,10 +64,9 @@ public class CustomAdapter_OrderConfirm extends RecyclerView.Adapter<CustomAdapt
         holder.food_name_txt.setText(String.valueOf(food_name.get(position)));//https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView.Adapter#onFailedToRecycleView(VH)
         holder.food_price_txt.setText(String.valueOf(food_price.get(position)));//keyword: onBindViewHolder
         holder.food_qty_txt.setText(String.valueOf(food_qty.get(position)));
-        holder.mainLayout.setOnClickListener(new View.OnClickListener() { //when items in recyclerview was clicked, we are going to transfer to our activity where
-            //all the variables saved in SQL for that particular id will be carried over for modification.
-            @Override
-            public void onClick(View v) {//this chunk of code is for click response, I don't allow edit here.
+        //when items in recyclerview was clicked, we are going to transfer to our activity where
+//all the variables saved in SQL for that particular id will be carried over for modification.
+        holder.mainLayout.setOnClickListener(v -> {//this chunk of code is for click response, I don't allow edit here.
 //                Intent intent = new Intent(context, UpdateActivity.class);
 //                intent.putExtra("id", String.valueOf(food_id.get(position))); //start intent with this variable carried over. We need to fetch the data from
 //                //this one specifically so we can edit the data in it through request to SQLite.
@@ -78,7 +75,6 @@ public class CustomAdapter_OrderConfirm extends RecyclerView.Adapter<CustomAdapt
 //                intent.putExtra("qty", String.valueOf(food_qty.get(position)));
 //                intent.putExtra("description", String.valueOf(food_description.get(position)));
 //                activity.startActivityForResult(intent,1);
-            }
         });
 
     }
@@ -88,10 +84,10 @@ public class CustomAdapter_OrderConfirm extends RecyclerView.Adapter<CustomAdapt
         return food_id.size();// count how many items are in the RecyclerView dataset.
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{//inner class extends ViewHolder
+    public static class MyViewHolder extends RecyclerView.ViewHolder{//inner class extends ViewHolder
 
 
-        TextView food_id_txt, food_name_txt, food_price_txt, food_qty_txt, food_description_txt;
+        TextView food_id_txt, food_name_txt, food_price_txt, food_qty_txt, food_description_txt;//recyclerview does not have description but I am moving data as blocks to cause less confusion.
         LinearLayout mainLayout; //again, linear for vertical scroll. Don't want to mess it up by changing it. Might as well keep it.
 
         public MyViewHolder(@NonNull @NotNull View itemView) {

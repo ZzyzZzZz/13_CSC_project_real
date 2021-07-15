@@ -24,7 +24,7 @@
         android:layout_width="329dp"
         android:layout_height="312dp"
         android:fontFamily="@font/title"
-        android:text="@string/mrgs_eat_title"
+        android:text="@string/app_title"
         android:textAlignment="center"
         android:textSize="100sp"
         app:layout_constraintBottom_toBottomOf="parent"

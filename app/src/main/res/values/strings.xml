@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MRGS EAT</string>
     <string name="TODO">13 CSC project</string>
-    <string name="mrgs_eat_title">MRGS EAT!</string>
+    <string name="app_title">MRGS EAT!</string>
     <string name="title_reminder">Please make sure you are connected to the student BYOD network before using this app</string>
     <string name="change_user_txt">Change User</string>
     <string name="google_pfp_image">google_pfp</string>

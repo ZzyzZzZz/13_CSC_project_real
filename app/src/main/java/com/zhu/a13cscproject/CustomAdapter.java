@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder>{// custom adapter to display data
 
     private final Context context;
-    private ArrayList food_id, food_name, food_price, food_qty, food_description;
+    private ArrayList food_id, food_name, food_price, food_qty, food_description; // I am not making these final for a reason. They logically work and also I already have error prevention somewhere else.
     Activity activity;
 
     //when this class (activity) is initialized in FoodChoice_v2, pass all ArrayLists created here to that class. Then set global variables so we can access them in other classes.
@@ -61,19 +61,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.food_name_txt.setText(String.valueOf(food_name.get(position)));//https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView.Adapter#onFailedToRecycleView(VH)
         holder.food_price_txt.setText(String.valueOf(food_price.get(position)));//keyword: onBindViewHolder
         holder.food_qty_txt.setText(String.valueOf(food_qty.get(position)));
-        holder.mainLayout.setOnClickListener(new View.OnClickListener() { //when items in recyclerview was clicked, we are going to transfer to our activity where
-            //all the variables saved in SQL for that particular id will be carried over for modification.
-            @Override
-            public void onClick(View v) {//to put these variables in another class. FoodSpecifications.
-                Intent intent = new Intent(context, UpdateActivity.class);
-                intent.putExtra("id", String.valueOf(food_id.get(position))); //start intent with this variable carried over. We need to fetch the data from
-                //this one specifically so we can edit the data in it through request to SQLite.
-                intent.putExtra("name", String.valueOf(food_name.get(position)));
-                intent.putExtra("price", String.valueOf(food_price.get(position)));
-                intent.putExtra("qty", String.valueOf(food_qty.get(position)));
-                intent.putExtra("description", String.valueOf(food_description.get(position)));
-                activity.startActivityForResult(intent,1);
-            }
+        //when items in recyclerview was clicked, we are going to transfer to our activity where
+//all the variables saved in SQL for that particular id will be carried over for modification.
+        holder.mainLayout.setOnClickListener(v -> {//to put these variables in another class. FoodSpecifications.
+            Intent intent = new Intent(context, UpdateActivity.class);
+            intent.putExtra("id", String.valueOf(food_id.get(position))); //start intent with this variable carried over. We need to fetch the data from
+            //this one specifically so we can edit the data in it through request to SQLite.
+            intent.putExtra("name", String.valueOf(food_name.get(position)));
+            intent.putExtra("price", String.valueOf(food_price.get(position)));
+            intent.putExtra("qty", String.valueOf(food_qty.get(position)));
+            intent.putExtra("description", String.valueOf(food_description.get(position)));
+            activity.startActivityForResult(intent,1);
         });
     }
 
@@ -82,10 +80,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         return food_id.size();// count how many items are in the RecyclerView dataset.
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{//inner class extends ViewHolder
+    public static class MyViewHolder extends RecyclerView.ViewHolder{//inner class extends ViewHolder
 
 
-        TextView food_id_txt, food_name_txt, food_price_txt, food_qty_txt, food_description_txt;
+        TextView food_id_txt, food_name_txt, food_price_txt, food_qty_txt, food_description_txt; // in my code there are no description on recyclerview, but I am leaving it here since I want to move all data together to cause less confusion.
         LinearLayout mainLayout; //again, linear for vertical scroll. Don't want to mess it up by changing it. Might as well keep it.
 
         public MyViewHolder(@NonNull @NotNull View itemView) {

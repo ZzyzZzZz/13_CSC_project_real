@@ -3,7 +3,6 @@ package com.zhu.a13cscproject;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +18,7 @@ public class UpdateActivity extends AppCompatActivity {
     Button update_btn;
     TextView food_name, food_price, food_description;
     ImageButton add_input, subtract_input;
-    FloatingActionButton delete_fbtn;
+    FloatingActionButton delete_f_btn;
 
     String id;
     String name;
@@ -73,13 +72,13 @@ public class UpdateActivity extends AppCompatActivity {
         food_price = findViewById(R.id.food_price2);
         food_qty = findViewById(R.id.food_qty2);
         food_description = findViewById(R.id.food_description2);
-        delete_fbtn = findViewById(R.id.delete_item);// only show in dev_mode enabled.
+        delete_f_btn = findViewById(R.id.delete_item);// only show in dev_mode enabled.
         if(dev_mode == 1){
-            delete_fbtn.show();//show if dev_mode enabled
+            delete_f_btn.show();//show if dev_mode enabled
         }else{
-            delete_fbtn.hide();//other wise hide
+            delete_f_btn.hide();//other wise hide
         }
-        delete_fbtn.setOnClickListener(v -> { // to delete items in SQLite as a whole
+        delete_f_btn.setOnClickListener(v -> { // to delete items in SQLite as a whole
             confirmDeleteDialog();
         });
 
@@ -133,19 +132,15 @@ public class UpdateActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Delete " + name + "?");
         builder.setMessage("Delete " + name + " permanently?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {//I am leaving this for ease of use
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                FoodDatabase db = new FoodDatabase(UpdateActivity.this); // FoodDatabase object
-                db.deleteOneRow(id); // exe the delete row with the respective id.
-                finish();
-            }
+        //I am leaving this for ease of use
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+            FoodDatabase db = new FoodDatabase(UpdateActivity.this); // FoodDatabase object
+            db.deleteOneRow(id); // exe the delete row with the respective id.
+            finish();
         });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {//leaving this for ease of use
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //nothing since we don't want to do anything.
-            }
+        //leaving this for ease of use
+        builder.setNegativeButton("No", (dialog, which) -> {
+            //nothing since we don't want to do anything.
         });
         builder.create().show();//or alert msg won't show. Tested.
     }
@@ -154,11 +149,9 @@ public class UpdateActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);//building alert message to inform user
         builder.setTitle("More than 10 " + name + "!");
         builder.setMessage("10 " + name + "! You got some impressive skills there to finish all these. Unfortunately you got to leave some for others.");
-        builder.setPositiveButton("Fine, I'll leave some for others", new DialogInterface.OnClickListener() {//button clicked, back to ordering food.
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //nothing here, only a reminder msg
-            }
+        //button clicked, back to ordering food.
+        builder.setPositiveButton("Fine, I'll leave some for others", (dialog, which) -> {
+            //nothing here, only a reminder msg
         });
         builder.create().show();//must have for all alertDialog
     }
@@ -167,11 +160,9 @@ public class UpdateActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);//building alert message to inform user
         builder.setTitle("You ain't selling no " + name + " to me");
         builder.setMessage("How do I know? Well, that's a story for another time.");
-        builder.setPositiveButton("Yeah, right.", new DialogInterface.OnClickListener() {//button clicked, back to ordering food.
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //nothing here as well, back to food selection.
-            }
+        //button clicked, back to ordering food.
+        builder.setPositiveButton("Yeah, right.", (dialog, which) -> {
+            //nothing here as well, back to food selection.
         });
         builder.create().show();//must have for all alertDialog
     }

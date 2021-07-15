@@ -35,7 +35,7 @@
         android:contentDescription="@string/to_confirm_order"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/to_addfood"
+        android:id="@+id/to_addFood"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="32dp"

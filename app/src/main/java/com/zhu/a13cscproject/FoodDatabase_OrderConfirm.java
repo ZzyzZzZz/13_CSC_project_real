@@ -55,7 +55,7 @@ class FoodDatabase_OrderConfirm extends SQLiteOpenHelper{
 
         Cursor cursor; //define cursor
             cursor = db.rawQuery(query, null);// all data in cursor
-        return cursor;
+        return cursor;//not used, but I'll leave it here for future uses, when I can do something about the data.
     }
 
 }

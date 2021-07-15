@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import android.widget.TextView;
 
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -21,10 +20,10 @@ import com.google.android.gms.tasks.Task;
 public class MainActivity extends AppCompatActivity {
 
 
-    SignInButton signin; //signin button from google
-    int RC_SIGN_IN = 0; //declear variable
-    GoogleSignInClient mGoogleSignInClient; //Declear member variable, not to share with other activities.
-    TextView logo;
+    SignInButton signIn; //signIn button from google
+    final int RC_SIGN_IN = 0; //declare final variable
+    GoogleSignInClient mGoogleSignInClient; //Declare member variable, not to share with other activities.
+
 
 
     @Override
@@ -33,10 +32,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);//layout file
 
 
-        logo = findViewById(R.id.MRGS_EAT_logo);//nothing done yet
-
-        signin = findViewById(R.id.sign_in_button); // Onclick listener for google login
-        signin.setOnClickListener(view -> {
+        signIn = findViewById(R.id.sign_in_button); // Onclick listener for google login
+        signIn.setOnClickListener(view -> {
             if (view.getId() == R.id.sign_in_button) {//complicate
                 signIn();
                 // ...
@@ -63,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Check for existing Google Sign In account, if the user is already signed in
         // the GoogleSignInAccount will be non-null.
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        //GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
 
 
 
